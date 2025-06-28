@@ -1,6 +1,6 @@
 class LeaderboardUser {
   final int id;
-  final int rank;
+  int? rank;
   final String fullName;
   final String profile;
   final double withdrawBalance;

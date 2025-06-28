@@ -59,6 +59,12 @@ class LeaderBoardView extends StackedView<LeaderBoardViewModel> {
   }
 
   @override
+  void onViewModelReady(LeaderBoardViewModel viewModel) {
+    viewModel.onViewModelReady();
+    super.onViewModelReady(viewModel);
+  }
+
+  @override
   LeaderBoardViewModel viewModelBuilder(BuildContext context) =>
       LeaderBoardViewModel();
 }

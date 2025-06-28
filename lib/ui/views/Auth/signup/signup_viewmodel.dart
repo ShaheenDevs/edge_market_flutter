@@ -1,5 +1,6 @@
 import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/app/app.router.dart';
+import 'package:edge_market/models/user.dart';
 import 'package:edge_market/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -53,16 +54,14 @@ class SignupViewModel extends BaseViewModel {
 
     setBusy(false);
 
-    if (user != null) {
+    if (user.runtimeType == UserModel) {
       _snackbarService.showSnackbar(
         message: 'Signup successful!',
-        duration: const Duration(seconds: 2),
       );
-      _navigationService.replaceWithBottonBarView(); 
+      _navigationService.replaceWithBottonBarView();
     } else {
       _snackbarService.showSnackbar(
-        message: 'Signup failed. Please try again.',
-        duration: const Duration(seconds: 2),
+        message: _authService.error,
       );
     }
   }

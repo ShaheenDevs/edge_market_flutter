@@ -7,10 +7,13 @@ import 'dart:async' as _i6;
 import 'dart:io' as _i9;
 import 'dart:ui' as _i7;
 
+import 'package:edge_market/models/kyc.dart' as _i15;
+import 'package:edge_market/models/leaderboard.dart' as _i13;
+import 'package:edge_market/models/user.dart' as _i11;
 import 'package:edge_market/services/api_service.dart' as _i8;
 import 'package:edge_market/services/auth_service.dart' as _i10;
-import 'package:edge_market/services/kyc_service.dart' as _i12;
-import 'package:edge_market/services/leaderboard_service.dart' as _i11;
+import 'package:edge_market/services/kyc_service.dart' as _i14;
+import 'package:edge_market/services/leaderboard_service.dart' as _i12;
 import 'package:flutter/material.dart' as _i5;
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -885,15 +888,99 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
 /// A class which mocks [AuthService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthService extends _i1.Mock implements _i10.AuthService {}
+class MockAuthService extends _i1.Mock implements _i10.AuthService {
+  @override
+  _i6.Future<_i11.UserModel?> signUp(Map<String, dynamic>? data) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [data],
+        ),
+        returnValue: _i6.Future<_i11.UserModel?>.value(),
+        returnValueForMissingStub: _i6.Future<_i11.UserModel?>.value(),
+      ) as _i6.Future<_i11.UserModel?>);
+
+  @override
+  _i6.Future<_i11.UserModel?> signIn(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signIn,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i6.Future<_i11.UserModel?>.value(),
+        returnValueForMissingStub: _i6.Future<_i11.UserModel?>.value(),
+      ) as _i6.Future<_i11.UserModel?>);
+
+  @override
+  _i6.Future<void> logout() => (super.noSuchMethod(
+        Invocation.method(
+          #logout,
+          [],
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+}
 
 /// A class which mocks [LeaderboardService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLeaderboardService extends _i1.Mock
-    implements _i11.LeaderboardService {}
+    implements _i12.LeaderboardService {
+  @override
+  _i6.Future<List<_i13.LeaderboardUser>> getLeaderboard() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getLeaderboard,
+          [],
+        ),
+        returnValue: _i6.Future<List<_i13.LeaderboardUser>>.value(
+            <_i13.LeaderboardUser>[]),
+        returnValueForMissingStub: _i6.Future<List<_i13.LeaderboardUser>>.value(
+            <_i13.LeaderboardUser>[]),
+      ) as _i6.Future<List<_i13.LeaderboardUser>>);
+}
 
 /// A class which mocks [KycService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockKycService extends _i1.Mock implements _i12.KycService {}
+class MockKycService extends _i1.Mock implements _i14.KycService {
+  @override
+  _i6.Future<bool> createKYC({
+    required _i9.File? selfie,
+    required _i9.File? document,
+    required String? documentType,
+    required int? paymentId,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createKYC,
+          [],
+          {
+            #selfie: selfie,
+            #document: document,
+            #documentType: documentType,
+            #paymentId: paymentId,
+          },
+        ),
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
+
+  @override
+  _i6.Future<List<_i15.KycModel>> getAllKYCs() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllKYCs,
+          [],
+        ),
+        returnValue: _i6.Future<List<_i15.KycModel>>.value(<_i15.KycModel>[]),
+        returnValueForMissingStub:
+            _i6.Future<List<_i15.KycModel>>.value(<_i15.KycModel>[]),
+      ) as _i6.Future<List<_i15.KycModel>>);
+}

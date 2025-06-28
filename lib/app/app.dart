@@ -45,6 +45,7 @@ import 'package:edge_market/services/kyc_service.dart';
     LazySingleton(classType: AuthService),
     LazySingleton(classType: LeaderboardService),
     LazySingleton(classType: KycService),
+    LazySingleton(classType: SnackbarService),
 // @stacked-service
   ],
   bottomsheets: [

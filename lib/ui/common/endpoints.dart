@@ -1,6 +1,7 @@
 // endpoints.dart
 class Endpoints {
-  static const String baseUrl = 'http://localhost:3007';
+  // static const String baseUrl = 'http://localhost:3007';
+  static const String baseUrl = 'http://10.0.2.2:3007';
 
   static const String signUp = '/auth/signup';
   static const String signIn = '/auth/signin';

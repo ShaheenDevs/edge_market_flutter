@@ -1,5 +1,6 @@
 import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/app/app.router.dart';
+import 'package:edge_market/models/user.dart';
 import 'package:edge_market/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -10,8 +11,8 @@ class LoginViewModel extends BaseViewModel {
   final _authService = locator<AuthService>();
   final _snackbarService = locator<SnackbarService>();
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: "xyz@gmail.com");
+  final passwordController = TextEditingController(text: "qwerty123");
 
   bool obscurePassword = true;
 
@@ -32,7 +33,7 @@ class LoginViewModel extends BaseViewModel {
 
     if (password.isEmpty || password.length < 6) {
       _snackbarService.showSnackbar(
-        message: 'Password must be at least 6 characters.',
+        message: 'Password must be at least 8 characters.',
       );
       return;
     }
@@ -43,13 +44,11 @@ class LoginViewModel extends BaseViewModel {
 
     setBusy(false);
 
-    if (user != null) {
+    if (user.runtimeType == UserModel) {
       _snackbarService.showSnackbar(message: 'Login successful!');
       _navigationService.replaceWithKycView();
     } else {
-      _snackbarService.showSnackbar(
-        message: 'Login failed. Please check your credentials.',
-      );
+      _snackbarService.showSnackbar(message: _authService.error);
     }
   }
 
