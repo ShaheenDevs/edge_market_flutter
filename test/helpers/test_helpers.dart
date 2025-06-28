@@ -3,6 +3,9 @@ import 'package:mockito/mockito.dart';
 import 'package:edge_market/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:edge_market/services/api_service.dart';
+import 'package:edge_market/services/auth_service.dart';
+import 'package:edge_market/services/leaderboard_service.dart';
+import 'package:edge_market/services/kyc_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -14,6 +17,9 @@ import 'test_helpers.mocks.dart';
     MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<ApiService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<AuthService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<LeaderboardService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<KycService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
   ],
 )
@@ -22,6 +28,9 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterApiService();
+  getAndRegisterAuthService();
+  getAndRegisterLeaderboardService();
+  getAndRegisterKycService();
 // @stacked-mock-register
 }
 
@@ -83,6 +92,27 @@ MockApiService getAndRegisterApiService() {
   _removeRegistrationIfExists<ApiService>();
   final service = MockApiService();
   locator.registerSingleton<ApiService>(service);
+  return service;
+}
+
+MockAuthService getAndRegisterAuthService() {
+  _removeRegistrationIfExists<AuthService>();
+  final service = MockAuthService();
+  locator.registerSingleton<AuthService>(service);
+  return service;
+}
+
+MockLeaderboardService getAndRegisterLeaderboardService() {
+  _removeRegistrationIfExists<LeaderboardService>();
+  final service = MockLeaderboardService();
+  locator.registerSingleton<LeaderboardService>(service);
+  return service;
+}
+
+MockKycService getAndRegisterKycService() {
+  _removeRegistrationIfExists<KycService>();
+  final service = MockKycService();
+  locator.registerSingleton<KycService>(service);
   return service;
 }
 // @stacked-mock-create

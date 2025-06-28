@@ -16,6 +16,9 @@ import 'package:edge_market/ui/views/botton_bar/botton_bar_view.dart';
 import 'package:edge_market/ui/views/my_network/my_network_view.dart';
 import 'package:edge_market/ui/views/profile/profile_view.dart';
 import 'package:edge_market/services/api_service.dart';
+import 'package:edge_market/services/auth_service.dart';
+import 'package:edge_market/services/leaderboard_service.dart';
+import 'package:edge_market/services/kyc_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -39,6 +42,9 @@ import 'package:edge_market/services/api_service.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ApiService),
+    LazySingleton(classType: AuthService),
+    LazySingleton(classType: LeaderboardService),
+    LazySingleton(classType: KycService),
 // @stacked-service
   ],
   bottomsheets: [

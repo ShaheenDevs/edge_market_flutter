@@ -34,11 +34,12 @@ class ProfileHeader extends ViewModelWidget<ProfileViewModel> {
         const SizedBox(height: 20),
         CircleAvatar(
           radius: 45,
-          backgroundImage: CachedNetworkImageProvider(viewModel.user.avatar),
+          backgroundImage:
+              CachedNetworkImageProvider(viewModel.user.profile ?? ""),
         ),
         verticalSpaceSmall,
         Text(
-          viewModel.user.name,
+          viewModel.user.fullName,
           style: const TextStyle(
               color: kcWhiteColor, fontWeight: FontWeight.bold, fontSize: 18),
         ),

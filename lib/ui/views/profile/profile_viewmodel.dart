@@ -7,10 +7,12 @@ import 'package:stacked_services/stacked_services.dart';
 class ProfileViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  final UserProfile user = UserProfile(
-    name: "Ali khan",
+  final UserModel user = UserModel(
+    fullName: "Ali khan",
     email: "alikhan.business8@gmail.com",
-    avatar: "https://i.pravatar.cc/150?img=13",
+    profile: "https://i.pravatar.cc/150?img=13",
+    id: 0,
+    emailVerified: false,
   );
 
   void onEditProfile() {

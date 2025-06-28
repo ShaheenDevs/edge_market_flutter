@@ -1,4 +1,4 @@
-import 'package:edge_market/models/leaderboard_user.dart';
+import 'package:edge_market/models/leaderboard.dart';
 import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
@@ -34,7 +34,8 @@ class LeaderBoardView extends StackedView<LeaderBoardViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: viewModel.topUsers
-                    .map((user) => _TopUserWidget(user: user, rank: user.rank))
+                    .map((user) =>
+                        _TopUserWidget(user: user, rank: user.withdrawBalance))
                     .toList(),
               ),
 
@@ -64,7 +65,7 @@ class LeaderBoardView extends StackedView<LeaderBoardViewModel> {
 
 class _TopUserWidget extends StatelessWidget {
   final LeaderboardUser user;
-  final int rank;
+  final double rank;
 
   const _TopUserWidget({required this.user, required this.rank});
 
@@ -81,7 +82,7 @@ class _TopUserWidget extends StatelessWidget {
               child: CircleAvatar(
                 radius: 30,
                 backgroundImage: CachedNetworkImageProvider(
-                  "${user.avatarPath}${user.rank}",
+                  "${user.profile}${user.rank}",
                 ),
               ),
             ),
@@ -97,9 +98,9 @@ class _TopUserWidget extends StatelessWidget {
           ],
         ),
         verticalSpaceTiny,
-        Text(user.name,
+        Text(user.fullName,
             style: const TextStyle(color: Colors.white, fontSize: 14)),
-        Text("${(user.score / 1000).toStringAsFixed(0)}k",
+        Text("${(user.withdrawBalance / 1000).toStringAsFixed(0)}k",
             style: const TextStyle(color: Colors.grey)),
         if (rank == 2) (verticalSpaceMedium)
       ],
@@ -114,7 +115,7 @@ class _LeaderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isYou = user.name.toLowerCase() == 'you';
+    final bool isYou = user.fullName.toLowerCase() == 'you';
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6),
@@ -131,14 +132,14 @@ class _LeaderTile extends StatelessWidget {
           CircleAvatar(
               radius: 18,
               backgroundImage: CachedNetworkImageProvider(
-                "${user.avatarPath}${user.rank}",
+                "${user.profile}${user.rank}",
               )),
           horizontalSpaceSmall,
           Expanded(
-            child: Text(user.name,
+            child: Text(user.fullName,
                 style: const TextStyle(color: Colors.white, fontSize: 15)),
           ),
-          Text("${user.score ~/ 1000}k",
+          Text("${user.withdrawBalance ~/ 1000}k",
               style: const TextStyle(color: Colors.white)),
         ],
       ),

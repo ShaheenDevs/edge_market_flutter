@@ -10,7 +10,9 @@ dependencies:
   cached_network_image: ^3.4.1
   flutter:
     sdk: flutter
+  http: ^1.4.0
   motion_tab_bar_v2: ^0.4.0
+  shared_preferences: ^2.5.3
   stacked: ^3.4.0
   stacked_services: ^1.1.0
 
