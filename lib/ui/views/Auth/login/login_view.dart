@@ -100,7 +100,7 @@ class LoginView extends StackedView<LoginViewModel> {
 
                 /// Login Button
                 Button(
-                  btnText: "Create Account",
+                  btnText: "Singn In",
                   onClick: viewModel.login,
                   bgColor: null,
                 ),

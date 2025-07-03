@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/models/user.dart';
 import 'package:edge_market/services/api_service.dart';
 import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  final ApiService _apiService = ApiService();
+  final ApiService _apiService = locator<ApiService>();
+  UserModel? user;
+
   String error = "";
   Future<UserModel?> signUp(Map<String, dynamic> data) async {
     try {
@@ -15,8 +18,8 @@ class AuthService {
       if (res.statusCode == 201 || res.statusCode == 200) {
         Map<String, dynamic> responseData = jsonDecode(res.body);
         if (responseData['data'] != null) {
-          final user = UserModel.fromJson(responseData['data']);
-          await _saveUser(user);
+          user = UserModel.fromJson(responseData['data']);
+          await _saveUser(user!);
           return user;
         } else {
           error = jsonDecode(res.body)['message'] ?? 'Sign Up Failed';
@@ -43,8 +46,8 @@ class AuthService {
       if (res.statusCode == 200) {
         Map<String, dynamic> responseData = jsonDecode(res.body);
         if (responseData['data'] != null) {
-          final user = UserModel.fromJson(responseData['data']);
-          await _saveUser(user);
+          user = UserModel.fromJson(responseData['data']);
+          await _saveUser(user!);
           return user;
         } else {
           error = jsonDecode(res.body)['message'] ?? 'Sign In Failed';
@@ -70,6 +73,25 @@ class AuthService {
       error = 'An error occurred while saving user data';
       log('Save User Error: $e');
     }
+  }
+
+  Future<UserModel?> getLocalUser() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final userJson = prefs.getString('user');
+
+      if (userJson != null && userJson.isNotEmpty) {
+        final Map<String, dynamic> userMap = jsonDecode(userJson);
+        user = UserModel.fromJson(userMap);
+        return user;
+      } else {
+        log('No user found in local storage.');
+      }
+    } catch (e) {
+      error = 'An error occurred while retrieving local user data';
+      log('Get Local User Error: $e');
+    }
+    return null;
   }
 
   Future<void> logout() async {

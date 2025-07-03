@@ -14,16 +14,18 @@ import 'package:edge_market/ui/views/kyc/kyc_view.dart' as _i6;
 import 'package:edge_market/ui/views/leader_board/leader_board_view.dart'
     as _i10;
 import 'package:edge_market/ui/views/my_network/my_network_view.dart' as _i12;
+import 'package:edge_market/ui/views/notification/notification_view.dart'
+    as _i14;
 import 'package:edge_market/ui/views/privacy_terms/privacy_terms_view.dart'
     as _i8;
 import 'package:edge_market/ui/views/profile/profile_view.dart' as _i13;
 import 'package:edge_market/ui/views/upload_document/upload_document_view.dart'
     as _i7;
 import 'package:edge_market/ui/views/withdraw/withdraw_view.dart' as _i9;
-import 'package:flutter/material.dart' as _i14;
+import 'package:flutter/material.dart' as _i15;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i15;
+import 'package:stacked_services/stacked_services.dart' as _i16;
 
 class Routes {
   static const homeView = '/home-view';
@@ -50,6 +52,8 @@ class Routes {
 
   static const profileView = '/profile-view';
 
+  static const notificationView = '/notification-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -63,6 +67,7 @@ class Routes {
     bottonBarView,
     myNetworkView,
     profileView,
+    notificationView,
   };
 }
 
@@ -116,78 +121,88 @@ class StackedRouter extends _i1.RouterBase {
       Routes.profileView,
       page: _i13.ProfileView,
     ),
+    _i1.RouteDef(
+      Routes.notificationView,
+      page: _i14.NotificationView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.LoginView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.LoginView(),
         settings: data,
       );
     },
     _i5.SignupView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SignupView(),
         settings: data,
       );
     },
     _i6.KycView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.KycView(),
         settings: data,
       );
     },
     _i7.UploadDocumentView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.UploadDocumentView(),
         settings: data,
       );
     },
     _i8.PrivacyTermsView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.PrivacyTermsView(),
         settings: data,
       );
     },
     _i9.WithdrawView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.WithdrawView(),
         settings: data,
       );
     },
     _i10.LeaderBoardView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.LeaderBoardView(),
         settings: data,
       );
     },
     _i11.BottonBarView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.BottonBarView(),
         settings: data,
       );
     },
     _i12.MyNetworkView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.MyNetworkView(),
         settings: data,
       );
     },
     _i13.ProfileView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.ProfileView(),
+        settings: data,
+      );
+    },
+    _i14.NotificationView: (data) {
+      return _i15.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i14.NotificationView(),
         settings: data,
       );
     },
@@ -200,7 +215,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i15.NavigationService {
+extension NavigatorStateExtension on _i16.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -369,6 +384,20 @@ extension NavigatorStateExtension on _i15.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToNotificationView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.notificationView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -531,6 +560,20 @@ extension NavigatorStateExtension on _i15.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.profileView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithNotificationView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.notificationView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

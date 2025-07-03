@@ -50,6 +50,9 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                 child: Row(
                   children: [
                     MyNetworkBuildStatusColumn(
+                        title: "Not Applied", count: viewModel.notAppliedCount),
+                    const VerticalDivider(color: Colors.grey, width: 1),
+                    MyNetworkBuildStatusColumn(
                         title: "Pending", count: viewModel.pendingCount),
                     const VerticalDivider(color: Colors.grey, width: 1),
                     MyNetworkBuildStatusColumn(
@@ -113,14 +116,18 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                       ),
                       child: Row(
                         children: [
-                          Text("${user.rank}",
+                          Text("${user.rank + 1}",
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 16)),
                           const SizedBox(width: 12),
                           CircleAvatar(
                             radius: 18,
-                            backgroundImage:
-                                CachedNetworkImageProvider(user.avatarPath),
+                            backgroundImage: user.avatarPath.isNotEmpty
+                                ? CachedNetworkImageProvider(user.avatarPath)
+                                    as ImageProvider
+                                : const AssetImage(
+                                        "assets/images/user_avatar.png")
+                                    as ImageProvider,
                           ),
                           const SizedBox(width: 12),
                           Expanded(
@@ -131,9 +138,9 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 14)),
                                 Text(
-                                  "- ${user.status}",
+                                  user.kycStatus,
                                   style: TextStyle(
-                                    color: user.status == 'pending'
+                                    color: user.kycStatus == 'pending'
                                         ? Colors.red
                                         : Colors.blue,
                                     fontSize: 12,
@@ -142,7 +149,7 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                               ],
                             ),
                           ),
-                          Text("${user.score ~/ 1000}k",
+                          Text("${user.score ~/ 1000} k",
                               style: const TextStyle(color: Colors.white)),
                         ],
                       ),
@@ -155,6 +162,12 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
         ),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(MyNetworkViewModel viewModel) {
+    viewModel.onViewModelReady();
+    super.onViewModelReady(viewModel);
   }
 
   @override

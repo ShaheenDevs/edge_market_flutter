@@ -33,18 +33,21 @@ class ProfileHeader extends ViewModelWidget<ProfileViewModel> {
         ),
         const SizedBox(height: 20),
         CircleAvatar(
-          radius: 45,
-          backgroundImage:
-              CachedNetworkImageProvider(viewModel.user.profile ?? ""),
+          radius: 50,
+          backgroundImage: viewModel.user?.profile != null
+              ? CachedNetworkImageProvider(viewModel.user?.profile ?? "")
+                  as ImageProvider
+              : const AssetImage("assets/images/user_avatar.png")
+                  as ImageProvider,
         ),
         verticalSpaceSmall,
         Text(
-          viewModel.user.fullName,
+          viewModel.user?.fullName ?? "",
           style: const TextStyle(
               color: kcWhiteColor, fontWeight: FontWeight.bold, fontSize: 18),
         ),
         Text(
-          viewModel.user.email,
+          viewModel.user?.email ?? "",
           style: const TextStyle(color: kcLightGrey, fontSize: 13),
         ),
         verticalSpaceSmall,

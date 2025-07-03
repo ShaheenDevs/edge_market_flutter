@@ -1,44 +1,40 @@
-
-// kyc_service.dart
 import 'dart:convert';
 import 'dart:io';
+import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/models/kyc.dart';
+import 'package:edge_market/services/api_service.dart';
 import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class KycService {
+  final ApiService _apiService = locator<ApiService>();
+
+  /// Uploads KYC documents using ApiService's `uploadKyc`
   Future<bool> createKYC({
     required File selfie,
     required File document,
     required String documentType,
     required int paymentId,
   }) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+    final response = await _apiService.uploadKyc(
+      selfieImage: selfie,
+      documentImage: document,
+      documentType: documentType,
+      paymentId: paymentId.toString(),
+    );
 
-    var request = http.MultipartRequest('POST', Uri.parse(Endpoints.kyc));
-    request.headers['Authorization'] = 'Bearer $token';
-    request.files.add(await http.MultipartFile.fromPath('selfieImage', selfie.path));
-    request.files.add(await http.MultipartFile.fromPath('documentImage', document.path));
-    request.fields['documentType'] = documentType;
-    request.fields['paymentId'] = paymentId.toString();
-
-    var response = await request.send();
     return response.statusCode == 200 || response.statusCode == 201;
   }
 
+  /// Fetches all KYC records
   Future<List<KycModel>> getAllKYCs() async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
-    final res = await http.get(Uri.parse(Endpoints.kyc), headers: {
-      'Authorization': 'Bearer $token',
-    });
+    final http.Response res = await _apiService.get(Endpoints.kyc);
 
     if (res.statusCode == 200) {
       final data = jsonDecode(res.body)['data'] as List;
       return data.map((e) => KycModel.fromJson(e)).toList();
     }
+
     return [];
   }
 }

@@ -4,10 +4,15 @@ import 'dart:io';
 import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  final String? token;
-  ApiService({this.token});
+  String? token;
+
+  getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('token');
+  }
 
   Map<String, String> get _headers => {
         HttpHeaders.contentTypeHeader: 'application/json',
@@ -25,6 +30,9 @@ class ApiService {
   }
 
   Future<http.Response> get(String url) async {
+    if (token == null) {
+      await getToken();
+    }
     return await http.get(Uri.parse(Endpoints.baseUrl + url),
         headers: _headers);
   }

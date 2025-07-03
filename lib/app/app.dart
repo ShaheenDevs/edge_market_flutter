@@ -1,3 +1,5 @@
+import 'package:edge_market/services/notification.dart';
+import 'package:edge_market/services/referral_service.dart';
 import 'package:edge_market/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:edge_market/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:edge_market/ui/views/home/home_view.dart';
@@ -19,6 +21,7 @@ import 'package:edge_market/services/api_service.dart';
 import 'package:edge_market/services/auth_service.dart';
 import 'package:edge_market/services/leaderboard_service.dart';
 import 'package:edge_market/services/kyc_service.dart';
+import 'package:edge_market/ui/views/notification/notification_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -35,6 +38,7 @@ import 'package:edge_market/services/kyc_service.dart';
     MaterialRoute(page: BottonBarView),
     MaterialRoute(page: MyNetworkView),
     MaterialRoute(page: ProfileView),
+    MaterialRoute(page: NotificationView),
 // @stacked-route
   ],
   dependencies: [
@@ -46,6 +50,8 @@ import 'package:edge_market/services/kyc_service.dart';
     LazySingleton(classType: LeaderboardService),
     LazySingleton(classType: KycService),
     LazySingleton(classType: SnackbarService),
+    LazySingleton(classType: ReferralService),
+    LazySingleton(classType: NotificationService),
 // @stacked-service
   ],
   bottomsheets: [

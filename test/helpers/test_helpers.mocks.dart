@@ -719,6 +719,15 @@ class MockDialogService extends _i1.Mock implements _i3.DialogService {
 /// See the documentation for Mockito's code generation for more information.
 class MockApiService extends _i1.Mock implements _i8.ApiService {
   @override
+  set token(String? _token) => super.noSuchMethod(
+        Invocation.setter(
+          #token,
+          _token,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   _i6.Future<_i2.Response> post(
     String? url,
     Map<String, dynamic>? body,
@@ -890,6 +899,37 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthService extends _i1.Mock implements _i10.AuthService {
   @override
+  set user(_i11.UserModel? _user) => super.noSuchMethod(
+        Invocation.setter(
+          #user,
+          _user,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  String get error => (super.noSuchMethod(
+        Invocation.getter(#error),
+        returnValue: _i4.dummyValue<String>(
+          this,
+          Invocation.getter(#error),
+        ),
+        returnValueForMissingStub: _i4.dummyValue<String>(
+          this,
+          Invocation.getter(#error),
+        ),
+      ) as String);
+
+  @override
+  set error(String? _error) => super.noSuchMethod(
+        Invocation.setter(
+          #error,
+          _error,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   _i6.Future<_i11.UserModel?> signUp(Map<String, dynamic>? data) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -912,6 +952,16 @@ class MockAuthService extends _i1.Mock implements _i10.AuthService {
             email,
             password,
           ],
+        ),
+        returnValue: _i6.Future<_i11.UserModel?>.value(),
+        returnValueForMissingStub: _i6.Future<_i11.UserModel?>.value(),
+      ) as _i6.Future<_i11.UserModel?>);
+
+  @override
+  _i6.Future<_i11.UserModel?> getLocalUser() => (super.noSuchMethod(
+        Invocation.method(
+          #getLocalUser,
+          [],
         ),
         returnValue: _i6.Future<_i11.UserModel?>.value(),
         returnValueForMissingStub: _i6.Future<_i11.UserModel?>.value(),

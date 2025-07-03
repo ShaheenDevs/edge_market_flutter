@@ -16,9 +16,9 @@ class LeaderboardUser {
   factory LeaderboardUser.fromJson(Map<String, dynamic> json) =>
       LeaderboardUser(
         id: json['id'],
-        rank: json['rank'],
-        fullName: json['fullName'],
-        profile: json['profile'],
+        rank: json['rank'] ?? 0,
+        fullName: json['fullName'] ?? "",
+        profile: json['profile'] ?? "",
         withdrawBalance: double.parse(json['withdrawBalance'].toString()),
       );
 }

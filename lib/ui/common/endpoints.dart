@@ -13,4 +13,8 @@ class Endpoints {
   static const String kycStatus = '/kyc/status';
 
   static const String leaderboard = '/leaderboard';
+
+  static const String referrals = '/referrals';
+
+  static const String notification = '/notification';
 }

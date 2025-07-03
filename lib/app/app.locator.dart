@@ -16,6 +16,8 @@ import '../services/api_service.dart';
 import '../services/auth_service.dart';
 import '../services/kyc_service.dart';
 import '../services/leaderboard_service.dart';
+import '../services/notification.dart';
+import '../services/referral_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -36,4 +38,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => LeaderboardService());
   locator.registerLazySingleton(() => KycService());
   locator.registerLazySingleton(() => SnackbarService());
+  locator.registerLazySingleton(() => ReferralService());
+  locator.registerLazySingleton(() => NotificationService());
 }
