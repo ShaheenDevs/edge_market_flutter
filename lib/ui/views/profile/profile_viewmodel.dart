@@ -32,7 +32,8 @@ class ProfileViewModel extends BaseViewModel {
     // Show Privacy & Terms
   }
 
-  void onLogout() {
-    // Logout logic
+  Future<void> onLogout() async {
+    await _authService.logout();
+    _navigationService.clearStackAndShow(Routes.loginView);
   }
 }

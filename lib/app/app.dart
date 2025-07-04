@@ -49,7 +49,6 @@ import 'package:edge_market/ui/views/notification/notification_view.dart';
     LazySingleton(classType: AuthService),
     LazySingleton(classType: LeaderboardService),
     LazySingleton(classType: KycService),
-    LazySingleton(classType: SnackbarService),
     LazySingleton(classType: ReferralService),
     LazySingleton(classType: NotificationService),
 // @stacked-service

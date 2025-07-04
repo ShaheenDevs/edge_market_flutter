@@ -2,6 +2,7 @@ import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/app/app.router.dart';
 import 'package:edge_market/models/user.dart';
 import 'package:edge_market/services/auth_service.dart';
+import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -9,7 +10,6 @@ import 'package:stacked_services/stacked_services.dart';
 class LoginViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
-  final _snackbarService = locator<SnackbarService>();
 
   final emailController = TextEditingController(text: "xyz@gmail.com");
   final passwordController = TextEditingController(text: "qwerty123");
@@ -27,13 +27,13 @@ class LoginViewModel extends BaseViewModel {
 
     // Basic validation
     if (email.isEmpty || !email.contains('@')) {
-      _snackbarService.showSnackbar(message: 'Please enter a valid email.');
+      showToast('Please enter a valid email.');
       return;
     }
 
     if (password.isEmpty || password.length < 6) {
-      _snackbarService.showSnackbar(
-        message: 'Password must be at least 8 characters.',
+      showToast(
+        'Password must be at least 8 characters.',
       );
       return;
     }
@@ -45,10 +45,10 @@ class LoginViewModel extends BaseViewModel {
     setBusy(false);
 
     if (user.runtimeType == UserModel) {
-      _snackbarService.showSnackbar(message: 'Login successful!');
+      showToast('Login successful!');
       _navigationService.replaceWithKycView();
     } else {
-      _snackbarService.showSnackbar(message: _authService.error);
+      showToast(_authService.error);
     }
   }
 

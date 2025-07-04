@@ -1,40 +1,67 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/models/kyc.dart';
 import 'package:edge_market/services/api_service.dart';
 import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:http/http.dart' as http;
+import 'package:edge_market/app/app.locator.dart';
 
 class KycService {
   final ApiService _apiService = locator<ApiService>();
 
-  /// Uploads KYC documents using ApiService's `uploadKyc`
-  Future<bool> createKYC({
-    required File selfie,
-    required File document,
+  Future<KycModel?> uploadKyc({
+    required File selfieImage,
+    required File documentImage,
     required String documentType,
-    required int paymentId,
+    required String paymentId,
   }) async {
     final response = await _apiService.uploadKyc(
-      selfieImage: selfie,
-      documentImage: document,
+      selfieImage: selfieImage,
+      documentImage: documentImage,
       documentType: documentType,
-      paymentId: paymentId.toString(),
+      paymentId: paymentId,
     );
 
-    return response.statusCode == 200 || response.statusCode == 201;
+    if (response.statusCode == 201) {
+      final res = await http.Response.fromStream(response);
+      final json = jsonDecode(res.body)['data'];
+      return KycModel.fromJson(json);
+    }
+
+    return null;
   }
 
-  /// Fetches all KYC records
-  Future<List<KycModel>> getAllKYCs() async {
-    final http.Response res = await _apiService.get(Endpoints.kyc);
-
+  Future<List<KycModel>> getAllKycs() async {
+    final res = await _apiService.get(Endpoints.kyc);
     if (res.statusCode == 200) {
       final data = jsonDecode(res.body)['data'] as List;
       return data.map((e) => KycModel.fromJson(e)).toList();
     }
-
     return [];
+  }
+
+  Future<KycModel?> getKycById(int id) async {
+    final res = await _apiService.get('${Endpoints.kyc}/$id');
+    if (res.statusCode == 200) {
+      final data = jsonDecode(res.body)['data'];
+      return KycModel.fromJson(data);
+    }
+    return null;
+  }
+
+  Future<bool> updateKycStatus({
+    required int id,
+    required String status,
+  }) async {
+    final res = await _apiService.put('${Endpoints.kyc}/$id', {
+      'status': status,
+    });
+
+    return res.statusCode == 200;
+  }
+
+  Future<bool> deleteKyc(int id) async {
+    final res = await _apiService.delete('${Endpoints.kyc}/$id');
+    return res.statusCode == 200;
   }
 }

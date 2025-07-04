@@ -14,94 +14,100 @@ class KycView extends StackedView<KycViewModel> {
   Widget builder(BuildContext context, KycViewModel viewModel, Widget? child) {
     return Scaffold(
       backgroundColor: kcBackgroundColor,
-      body: SafeArea(
-        child: Background(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              children: [
-                verticalSpaceMedium,
-                Center(
-                  child: Image.asset(
-                    'assets/images/kyc_illustration.png', // Replace with your image asset
-                    height: 200,
-                  ),
-                ),
-                verticalSpaceMedium,
-                const Text(
-                  "Let's verify KYC",
-                  style: TextStyle(
-                    color: kcWhiteColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                verticalSpaceSmall,
-                const Text(
-                  "Please submit the following documents verify your profile",
-                  style: TextStyle(
-                    color: kcVeryLightGrey,
-                    fontSize: 13,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                verticalSpaceLarge,
-
-                /// 1. Take a picture of your ID
-                KycOptionTile(
-                  icon: Icons.badge_outlined,
-                  title: "Take a picture of your valid ID",
-                  subtitle: "To check your personal information are correct",
-                  onTap: viewModel.takeIdPicture,
-                ),
-                verticalSpaceSmall,
-
-                /// 2. Take a selfie
-                KycOptionTile(
-                  icon: Icons.camera_alt_outlined,
-                  title: "Take a selfie of yourself",
-                  subtitle: "To match your face to your ID photo",
-                  onTap: viewModel.takeSelfie,
-                ),
-                verticalSpaceLarge,
-
-                /// Pay Button
-                Button(
-                  btnText: "Pay 15\$",
-                  onClick: viewModel.payForKyc,
-                  useGradient: true,
-                ),
-                verticalSpaceTiny,
-                const Text(
-                  "kyc will cost you 15\$ please pay to get verified",
-                  style: TextStyle(color: kcVeryLightGrey, fontSize: 11),
-                ),
-                const Spacer(),
-
-                /// Footer Row
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Stack(
+        children: [
+          SafeArea(
+            child: Background(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
                   children: [
-                    Text("Logout", style: TextStyle(color: kcPrimaryColor)),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                              text: 'Language: ',
-                              style: TextStyle(color: kcLightGrey)),
-                          TextSpan(
-                              text: 'English',
-                              style: TextStyle(color: kcPrimaryColor)),
-                        ],
+                    verticalSpaceMedium,
+                    Center(
+                      child: Image.asset(
+                        'assets/images/kyc_illustration.png', // Replace with your image asset
+                        height: 200,
                       ),
                     ),
+                    verticalSpaceMedium,
+                    const Text(
+                      "Let's verify KYC",
+                      style: TextStyle(
+                        color: kcWhiteColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    verticalSpaceSmall,
+                    const Text(
+                      "Please submit the following documents verify your profile",
+                      style: TextStyle(
+                        color: kcVeryLightGrey,
+                        fontSize: 13,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    verticalSpaceLarge,
+
+                    /// 1. Take a picture of your ID
+                    KycOptionTile(
+                      icon: Icons.badge_outlined,
+                      title: "Take a picture of your valid ID",
+                      subtitle:
+                          "To check your personal information are correct",
+                      onTap: viewModel.takeIdPicture,
+                    ),
+                    verticalSpaceSmall,
+
+                    /// 2. Take a selfie
+                    KycOptionTile(
+                      icon: Icons.camera_alt_outlined,
+                      title: "Take a selfie of yourself",
+                      subtitle: "To match your face to your ID photo",
+                      onTap: viewModel.takeSelfie,
+                    ),
+                    verticalSpaceLarge,
+
+                    /// Pay Button
+                    Button(
+                      btnText: "Pay 15\$",
+                      onClick: viewModel.payForKyc,
+                      useGradient: true,
+                    ),
+                    verticalSpaceTiny,
+                    const Text(
+                      "kyc will cost you 15\$ please pay to get verified",
+                      style: TextStyle(color: kcVeryLightGrey, fontSize: 11),
+                    ),
+                    const Spacer(),
+
+                    /// Footer Row
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Logout", style: TextStyle(color: kcPrimaryColor)),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: 'Language: ',
+                                  style: TextStyle(color: kcLightGrey)),
+                              TextSpan(
+                                  text: 'English',
+                                  style: TextStyle(color: kcPrimaryColor)),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    verticalSpaceSmall,
                   ],
                 ),
-                verticalSpaceSmall,
-              ],
+              ),
             ),
           ),
-        ),
+          if (viewModel.isBusy) const Center(child: CircularProgressIndicator())
+        ],
       ),
     );
   }

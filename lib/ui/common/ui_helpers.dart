@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 const double _tinySize = 5.0;
 const double _smallSize = 10.0;
@@ -87,4 +89,15 @@ double getResponsiveFontSize(
   );
 
   return responsiveSize;
+}
+
+showToast(String message) {
+  Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: kcPrimaryColor ,
+      textColor: kcBackgroundColor,
+      fontSize: 16);
 }

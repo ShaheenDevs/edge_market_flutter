@@ -2,6 +2,7 @@ import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/app/app.router.dart';
 import 'package:edge_market/models/user.dart';
 import 'package:edge_market/services/auth_service.dart';
+import 'package:edge_market/ui/common/ui_helpers.dart' show showToast;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -9,7 +10,6 @@ import 'package:stacked_services/stacked_services.dart';
 class SignupViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
-  final _snackbarService = locator<SnackbarService>();
 
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -55,13 +55,13 @@ class SignupViewModel extends BaseViewModel {
     setBusy(false);
 
     if (user.runtimeType == UserModel) {
-      _snackbarService.showSnackbar(
-        message: 'Signup successful!',
+      showToast(
+        'Signup successful!',
       );
       _navigationService.replaceWithBottonBarView();
     } else {
-      _snackbarService.showSnackbar(
-        message: _authService.error,
+      showToast(
+        _authService.error,
       );
     }
   }
