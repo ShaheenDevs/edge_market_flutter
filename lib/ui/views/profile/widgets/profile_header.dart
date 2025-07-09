@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edge_market/ui/common/app_colors.dart';
+import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:edge_market/ui/widgets/common/button/button.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,8 @@ class ProfileHeader extends ViewModelWidget<ProfileViewModel> {
         CircleAvatar(
           radius: 50,
           backgroundImage: viewModel.user?.profile != null
-              ? CachedNetworkImageProvider(viewModel.user?.profile ?? "")
+              ? CachedNetworkImageProvider(
+                      "${Endpoints.baseUrl}/${viewModel.user?.profile}")
                   as ImageProvider
               : const AssetImage("assets/images/user_avatar.png")
                   as ImageProvider,

@@ -46,7 +46,15 @@ class LoginViewModel extends BaseViewModel {
 
     if (user.runtimeType == UserModel) {
       showToast('Login successful!');
-      _navigationService.replaceWithKycView();
+      if (user?.kycStatus == "not_applied") {
+        _navigationService.replaceWithKycView();
+      } else if (user?.kycStatus == "approved") {
+        _navigationService.replaceWithBottonBarView();
+      } else if (user?.kycStatus == "pending") {
+        _navigationService.replaceWithKycPendingView();
+      } else if (user?.kycStatus == "rejected") {
+        _navigationService.replaceWithKycRejectedView();
+      }
     } else {
       showToast(_authService.error);
     }

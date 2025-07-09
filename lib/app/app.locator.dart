@@ -9,7 +9,6 @@
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
 import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
-import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api_service.dart';
@@ -17,7 +16,9 @@ import '../services/auth_service.dart';
 import '../services/kyc_service.dart';
 import '../services/leaderboard_service.dart';
 import '../services/notification.dart';
+import '../services/payments_service.dart';
 import '../services/referral_service.dart';
+import '../services/wallet.dart';
 
 final locator = StackedLocator.instance;
 
@@ -37,7 +38,8 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => AuthService());
   locator.registerLazySingleton(() => LeaderboardService());
   locator.registerLazySingleton(() => KycService());
-  locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => ReferralService());
   locator.registerLazySingleton(() => NotificationService());
+  locator.registerLazySingleton(() => WalletService());
+  locator.registerLazySingleton(() => PaymentMethodService());
 }

@@ -849,8 +849,10 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
   _i6.Future<_i2.StreamedResponse> uploadKyc({
     required _i9.File? selfieImage,
     required _i9.File? documentImage,
+    required _i9.File? paymentProof,
     required String? documentType,
     required String? paymentId,
+    required String? userId,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -859,8 +861,10 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
           {
             #selfieImage: selfieImage,
             #documentImage: documentImage,
+            #paymentProof: paymentProof,
             #documentType: documentType,
             #paymentId: paymentId,
+            #userId: userId,
           },
         ),
         returnValue:
@@ -872,8 +876,10 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
             {
               #selfieImage: selfieImage,
               #documentImage: documentImage,
+              #paymentProof: paymentProof,
               #documentType: documentType,
               #paymentId: paymentId,
+              #userId: userId,
             },
           ),
         )),
@@ -886,8 +892,10 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
             {
               #selfieImage: selfieImage,
               #documentImage: documentImage,
+              #paymentProof: paymentProof,
               #documentType: documentType,
               #paymentId: paymentId,
+              #userId: userId,
             },
           ),
         )),
@@ -958,6 +966,16 @@ class MockAuthService extends _i1.Mock implements _i10.AuthService {
       ) as _i6.Future<_i11.UserModel?>);
 
   @override
+  _i6.Future<_i11.UserModel?> getUser(int? userId) => (super.noSuchMethod(
+        Invocation.method(
+          #getUser,
+          [userId],
+        ),
+        returnValue: _i6.Future<_i11.UserModel?>.value(),
+        returnValueForMissingStub: _i6.Future<_i11.UserModel?>.value(),
+      ) as _i6.Future<_i11.UserModel?>);
+
+  @override
   _i6.Future<_i11.UserModel?> getLocalUser() => (super.noSuchMethod(
         Invocation.method(
           #getLocalUser,
@@ -1002,21 +1020,62 @@ class MockLeaderboardService extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockKycService extends _i1.Mock implements _i14.KycService {
   @override
-  _i6.Future<bool> createKYC({
-    required _i9.File? selfie,
-    required _i9.File? document,
+  _i6.Future<_i15.KycModel?> uploadKyc({
+    required _i9.File? selfieImage,
+    required _i9.File? documentImage,
+    required _i9.File? paymentProof,
     required String? documentType,
-    required int? paymentId,
+    required String? paymentId,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #createKYC,
+          #uploadKyc,
           [],
           {
-            #selfie: selfie,
-            #document: document,
+            #selfieImage: selfieImage,
+            #documentImage: documentImage,
+            #paymentProof: paymentProof,
             #documentType: documentType,
             #paymentId: paymentId,
+          },
+        ),
+        returnValue: _i6.Future<_i15.KycModel?>.value(),
+        returnValueForMissingStub: _i6.Future<_i15.KycModel?>.value(),
+      ) as _i6.Future<_i15.KycModel?>);
+
+  @override
+  _i6.Future<List<_i15.KycModel>> getAllKycs() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllKycs,
+          [],
+        ),
+        returnValue: _i6.Future<List<_i15.KycModel>>.value(<_i15.KycModel>[]),
+        returnValueForMissingStub:
+            _i6.Future<List<_i15.KycModel>>.value(<_i15.KycModel>[]),
+      ) as _i6.Future<List<_i15.KycModel>>);
+
+  @override
+  _i6.Future<_i15.KycModel?> getKycById(int? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getKycById,
+          [id],
+        ),
+        returnValue: _i6.Future<_i15.KycModel?>.value(),
+        returnValueForMissingStub: _i6.Future<_i15.KycModel?>.value(),
+      ) as _i6.Future<_i15.KycModel?>);
+
+  @override
+  _i6.Future<bool> updateKycStatus({
+    required int? id,
+    required String? status,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateKycStatus,
+          [],
+          {
+            #id: id,
+            #status: status,
           },
         ),
         returnValue: _i6.Future<bool>.value(false),
@@ -1024,13 +1083,12 @@ class MockKycService extends _i1.Mock implements _i14.KycService {
       ) as _i6.Future<bool>);
 
   @override
-  _i6.Future<List<_i15.KycModel>> getAllKYCs() => (super.noSuchMethod(
+  _i6.Future<bool> deleteKyc(int? id) => (super.noSuchMethod(
         Invocation.method(
-          #getAllKYCs,
-          [],
+          #deleteKyc,
+          [id],
         ),
-        returnValue: _i6.Future<List<_i15.KycModel>>.value(<_i15.KycModel>[]),
-        returnValueForMissingStub:
-            _i6.Future<List<_i15.KycModel>>.value(<_i15.KycModel>[]),
-      ) as _i6.Future<List<_i15.KycModel>>);
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
 }

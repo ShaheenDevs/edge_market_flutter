@@ -64,10 +64,36 @@ class AuthService {
     return null;
   }
 
+  Future<UserModel?> getUser(int userId) async {
+    try {
+      final res = await _apiService.get("${Endpoints.getUser}/$userId");
+
+      if (res.statusCode == 200) {
+        Map<String, dynamic> responseData = jsonDecode(res.body);
+
+        if (responseData['data'] != null) {
+          user = UserModel.fromJson(responseData['data']);
+          await _saveUser(user!);
+          return user;
+        } else {
+          error = responseData['message'] ?? 'Failed to fetch user';
+          log('Get User Failed: Invalid data');
+        }
+      } else {
+        error = jsonDecode(res.body)['message'] ?? 'Failed to fetch user';
+        log('Get User Failed: ${res.body}');
+      }
+    } catch (e) {
+      error = 'An error occurred while fetching user';
+      log('Get User Error: $e');
+    }
+    return null;
+  }
+
   Future<void> _saveUser(UserModel user) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      prefs.setString('token', user.token ?? '');
+      prefs.setString('token', user.token);
       prefs.setString('user', jsonEncode(user.toJson()));
     } catch (e) {
       error = 'An error occurred while saving user data';

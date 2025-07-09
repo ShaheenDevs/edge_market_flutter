@@ -66,12 +66,29 @@ class KycView extends StackedView<KycViewModel> {
                       subtitle: "To match your face to your ID photo",
                       onTap: viewModel.takeSelfie,
                     ),
+                    verticalSpaceSmall,
+                    KycOptionTile(
+                      icon: Icons.account_balance_wallet_outlined,
+                      title: "Select Payment Method",
+                      subtitle:
+                          "Choose how you paid (e.g. JazzCash, Easypaisa)",
+                      onTap: viewModel.selectPaymentMethod,
+                    ),
+                    verticalSpaceSmall,
+                    KycOptionTile(
+                      icon: Icons.upload_file_rounded,
+                      title: "Upload Payment Proof",
+                      subtitle: "Screenshot or receipt of your payment",
+                      onTap: viewModel.uploadPaymentProof,
+                    ),
                     verticalSpaceLarge,
 
                     /// Pay Button
                     Button(
                       btnText: "Pay 15\$",
-                      onClick: viewModel.payForKyc,
+                      onClick: () {
+                        viewModel.submitKyc();
+                      },
                       useGradient: true,
                     ),
                     verticalSpaceTiny,
@@ -110,6 +127,12 @@ class KycView extends StackedView<KycViewModel> {
         ],
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(KycViewModel viewModel) {
+    viewModel.onViewModelReady();
+    super.onViewModelReady(viewModel);
   }
 
   @override

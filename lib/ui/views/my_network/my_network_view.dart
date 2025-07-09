@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -123,7 +124,8 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                           CircleAvatar(
                             radius: 18,
                             backgroundImage: user.avatarPath.isNotEmpty
-                                ? CachedNetworkImageProvider(user.avatarPath)
+                                ? CachedNetworkImageProvider(
+                                        "${Endpoints.baseUrl}/${user.avatarPath}")
                                     as ImageProvider
                                 : const AssetImage(
                                         "assets/images/user_avatar.png")

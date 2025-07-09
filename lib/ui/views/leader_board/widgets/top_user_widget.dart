@@ -1,4 +1,5 @@
 import 'package:edge_market/models/leaderboard.dart';
+import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -25,7 +26,8 @@ class TopUserWidget extends ViewModelWidget<LeaderBoardViewModel> {
               child: CircleAvatar(
                 radius: 30,
                 backgroundImage: user.profile.isNotEmpty
-                    ? CachedNetworkImageProvider(user.profile) as ImageProvider
+                    ? CachedNetworkImageProvider(
+                        "${Endpoints.baseUrl}/${user.profile}") as ImageProvider
                     : const AssetImage("assets/images/user_avatar.png")
                         as ImageProvider,
               ),

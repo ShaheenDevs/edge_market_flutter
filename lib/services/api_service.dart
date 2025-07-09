@@ -45,8 +45,10 @@ class ApiService {
   Future<http.StreamedResponse> uploadKyc({
     required File selfieImage,
     required File documentImage,
+    required File paymentProof,
     required String documentType,
     required String paymentId,
+    required String userId,
   }) async {
     final request = http.MultipartRequest(
         'POST', Uri.parse(Endpoints.baseUrl + Endpoints.kyc));
@@ -56,13 +58,16 @@ class ApiService {
 
     request.fields['documentType'] = documentType;
     request.fields['paymentId'] = paymentId;
-
+    request.fields['userId'] = userId;
     request.files.add(await http.MultipartFile.fromPath(
         'selfieImage', selfieImage.path,
         contentType: MediaType('image', 'jpeg')));
 
     request.files.add(await http.MultipartFile.fromPath(
         'documentImage', documentImage.path,
+        contentType: MediaType('image', 'jpeg')));
+    request.files.add(await http.MultipartFile.fromPath(
+        'paymentProofImage', paymentProof.path,
         contentType: MediaType('image', 'jpeg')));
 
     return await request.send();

@@ -97,7 +97,7 @@ showToast(String message) {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
-      backgroundColor: kcPrimaryColor ,
+      backgroundColor: kcPrimaryColor,
       textColor: kcBackgroundColor,
       fontSize: 16);
 }

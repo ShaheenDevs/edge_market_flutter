@@ -110,7 +110,6 @@ class WithdrawView extends StackedView<WithdrawViewModel> {
                   "Final Amount You'll Receive: ~\$${viewModel.finalAmount.toStringAsFixed(0)}",
                   style: const TextStyle(color: Colors.lightGreenAccent)),
 
-
               /// Request Button
               GestureDetector(
                 onTap: viewModel.submitWithdraw,
