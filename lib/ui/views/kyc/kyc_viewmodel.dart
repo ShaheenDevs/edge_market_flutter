@@ -105,7 +105,7 @@ class KycViewModel extends BaseViewModel {
         documentImage: idDocument!,
         paymentProof: paymentProof!,
         documentType: type!,
-        paymentId: selectedPaymentMethod?.accountNumber ?? "",
+        payment: "5000",
       );
 
       if (kyc != null) {

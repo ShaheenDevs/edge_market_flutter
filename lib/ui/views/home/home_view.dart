@@ -75,22 +75,23 @@ class HomeView extends StackedView<HomeViewModel> {
                         verticalSpaceMedium,
 
                         /// Balance
-                        const Center(
+                        Center(
                           child: Column(
                             children: [
-                              Text("Available Balance",
+                              const Text("Available Balance",
                                   style: TextStyle(
                                       color: Colors.white70,
                                       fontWeight: FontWeight.w400)),
                               horizontalSpaceSmall,
-                              Text("\$ 14,000",
-                                  style: TextStyle(
+                              Text("${viewModel.user?.balance ?? 0.0}",
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 36,
                                       fontWeight: FontWeight.bold)),
                               verticalSpaceTiny,
-                              Text("Referral: 3       Level: 1",
-                                  style: TextStyle(
+                              Text(
+                                  "Referral: ${viewModel.user?.referralCount ?? "0"}",
+                                  style: const TextStyle(
                                       color: Colors.white60, fontSize: 12)),
                             ],
                           ),
@@ -98,30 +99,30 @@ class HomeView extends StackedView<HomeViewModel> {
                         verticalSpaceMedium,
 
                         /// Action Button (Withdraw)
-                        Center(
-                          child: InkWell(
-                            onTap: viewModel.showWithdrawBottomSheet,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 18, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white10,
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: const Column(
-                                children: [
-                                  Icon(Icons.wallet,
-                                      color: Colors.white, size: 28),
-                                  Text("--withdraw",
-                                      style: TextStyle(
-                                          color: Colors.redAccent,
-                                          fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        verticalSpaceMedium,
+                        // Center(
+                        //   child: InkWell(
+                        //     onTap: viewModel.showWithdrawBottomSheet,
+                        //     child: Container(
+                        //       padding: const EdgeInsets.symmetric(
+                        //           horizontal: 18, vertical: 10),
+                        //       decoration: BoxDecoration(
+                        //         color: Colors.white10,
+                        //         borderRadius: BorderRadius.circular(100),
+                        //       ),
+                        //       child: const Column(
+                        //         children: [
+                        //           Icon(Icons.wallet,
+                        //               color: Colors.white, size: 28),
+                        //           Text("--withdraw",
+                        //               style: TextStyle(
+                        //                   color: Colors.redAccent,
+                        //                   fontSize: 12)),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        // verticalSpaceMedium,
 
                         /// Transactions Title
                         const Row(
@@ -130,9 +131,9 @@ class HomeView extends StackedView<HomeViewModel> {
                             Text("Latest Transactions",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 16)),
-                            Text("See all",
-                                style: TextStyle(
-                                    color: Colors.white60, fontSize: 12)),
+                            // Text("See all",
+                            //     style: TextStyle(
+                            //         color: Colors.white60, fontSize: 12)),
                           ],
                         ),
                         verticalSpaceSmall,

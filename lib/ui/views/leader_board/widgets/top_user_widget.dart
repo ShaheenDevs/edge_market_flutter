@@ -46,7 +46,7 @@ class TopUserWidget extends ViewModelWidget<LeaderBoardViewModel> {
         verticalSpaceTiny,
         Text(user.fullName,
             style: const TextStyle(color: Colors.white, fontSize: 14)),
-        Text("${(user.withdrawBalance / 1000).toStringAsFixed(0)}k",
+        Text("${(user.balance / 1000).toStringAsFixed(0)}k",
             style: const TextStyle(color: Colors.grey)),
         if (rank == 2) (verticalSpaceMedium)
       ],

@@ -25,7 +25,7 @@ class StartupViewModel extends BaseViewModel {
     // Check if user exists
     if (localUser != null) {
       // Try to sign in again using saved credentials
-      final user = await _authService.getUser(localUser.id);
+      final user = await _authService.getUser(0);
 
       if (user is UserModel) {
         // Navigate based on KYC status

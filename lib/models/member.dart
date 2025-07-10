@@ -1,33 +1,37 @@
 class Member {
-  final int rank;
-  final String name;
-  final String avatarPath;
+  final int id;
+  final String fullName;
+  final String email;
+  final String profile;
+  final int balance;
   final String kycStatus;
-  final int score;
 
   Member({
-    required this.rank,
-    required this.name,
-    required this.avatarPath,
+    required this.id,
+    required this.fullName,
+    required this.email,
+    required this.profile,
+    required this.balance,
     required this.kycStatus,
-    required this.score,
   });
 
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
-      rank: json['rank'] ?? 0,
-      name: json['name'] ?? 'Unknown',
-      avatarPath: json['avatarPath'] ?? '',
+      id: json['id'] ?? 0,
+      fullName: json['fullName'] ?? 'Unknown',
+      email: json['email'] ?? '',
+      profile: json['profile'] ?? '',
+      balance: json['balance'] ?? 0,
       kycStatus: json['kycStatus'] ?? '',
-      score: json['score'] ?? 0,
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'rank': rank,
-        'name': name,
-        'avatarPath': avatarPath,
+        'id': id,
+        'fullName': fullName,
+        'email': email,
+        'profile': profile,
+        'balance': balance,
         'kycStatus': kycStatus,
-        'score': score,
       };
 }

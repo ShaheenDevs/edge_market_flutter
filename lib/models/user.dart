@@ -11,6 +11,7 @@ class UserModel {
   final int balance;
   final int withdrawBalance;
   final int? referralBy;
+  final int? referralCount;
   final String language;
   final String kycStatus;
   final DateTime createdAt;
@@ -31,6 +32,7 @@ class UserModel {
     required this.balance,
     required this.withdrawBalance,
     this.referralBy,
+    this.referralCount,
     required this.language,
     required this.kycStatus,
     required this.createdAt,
@@ -53,6 +55,7 @@ class UserModel {
       balance: json['balance'] ?? 0,
       withdrawBalance: json['withdrawBalance'] ?? 0,
       referralBy: json['referralBy'],
+      referralCount: json['referralCount'],
       language: json['language'] ?? 'English',
       kycStatus: json['kycStatus'] ?? 'not_applied',
       createdAt: DateTime.parse(json['createdAt']),
@@ -76,6 +79,7 @@ class UserModel {
       'balance': balance,
       'withdrawBalance': withdrawBalance,
       'referralBy': referralBy,
+      'referralCount': referralCount,
       'language': language,
       'kycStatus': kycStatus,
       'createdAt': createdAt.toIso8601String(),

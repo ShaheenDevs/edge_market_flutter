@@ -3,7 +3,7 @@ class KycModel {
   final String selfieImage;
   final String documentImage;
   final String documentType;
-  final String paymentId;
+  final String payment;
   final String status;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -13,7 +13,7 @@ class KycModel {
     required this.selfieImage,
     required this.documentImage,
     required this.documentType,
-    required this.paymentId,
+    required this.payment,
     required this.status,
     required this.createdAt,
     required this.updatedAt,
@@ -25,7 +25,7 @@ class KycModel {
       selfieImage: json['selfieImage'],
       documentImage: json['documentImage'],
       documentType: json['documentType'],
-      paymentId: json['paymentId'],
+      payment: json['payment'],
       status: json['status'],
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
@@ -38,7 +38,7 @@ class KycModel {
       'selfieImage': selfieImage,
       'documentImage': documentImage,
       'documentType': documentType,
-      'paymentId': paymentId,
+      'payment': payment,
       'status': status,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),

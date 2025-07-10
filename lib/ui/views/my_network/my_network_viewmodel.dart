@@ -23,7 +23,7 @@ class MyNetworkViewModel extends BaseViewModel {
   int get pendingCount =>
       _members.where((m) => m.kycStatus == 'pending').length;
   int get acceptedCount =>
-      _members.where((m) => m.kycStatus == 'accepted').length;
+      _members.where((m) => m.kycStatus == 'approved').length;
 
   String get inviteCode => "edg${user?.id}";
 

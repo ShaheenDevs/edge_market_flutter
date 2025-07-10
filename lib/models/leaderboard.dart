@@ -3,14 +3,14 @@ class LeaderboardUser {
   int? rank;
   final String fullName;
   final String profile;
-  final double withdrawBalance;
+  final double balance;
 
   LeaderboardUser({
     required this.id,
     required this.rank,
     required this.fullName,
     required this.profile,
-    required this.withdrawBalance,
+    required this.balance,
   });
 
   factory LeaderboardUser.fromJson(Map<String, dynamic> json) =>
@@ -19,6 +19,6 @@ class LeaderboardUser {
         rank: json['rank'] ?? 0,
         fullName: json['fullName'] ?? "",
         profile: json['profile'] ?? "",
-        withdrawBalance: double.parse(json['withdrawBalance'].toString()),
+        balance: double.parse(json['balance'].toString()),
       );
 }

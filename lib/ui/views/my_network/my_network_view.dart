@@ -117,15 +117,15 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                       ),
                       child: Row(
                         children: [
-                          Text("${user.rank + 1}",
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 16)),
-                          const SizedBox(width: 12),
+                          // Text("${index + 1}",
+                          //     style: const TextStyle(
+                          //         color: Colors.white, fontSize: 16)),
+                          // const SizedBox(width: 12),
                           CircleAvatar(
                             radius: 18,
-                            backgroundImage: user.avatarPath.isNotEmpty
+                            backgroundImage: user.profile.isNotEmpty
                                 ? CachedNetworkImageProvider(
-                                        "${Endpoints.baseUrl}/${user.avatarPath}")
+                                        "${Endpoints.baseUrl}/${user.profile}")
                                     as ImageProvider
                                 : const AssetImage(
                                         "assets/images/user_avatar.png")
@@ -136,7 +136,7 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(user.name,
+                                Text(user.fullName,
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 14)),
                                 Text(
@@ -151,7 +151,7 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                               ],
                             ),
                           ),
-                          Text("${user.score ~/ 1000} k",
+                          Text("${user.balance ~/ 1000} k",
                               style: const TextStyle(color: Colors.white)),
                         ],
                       ),

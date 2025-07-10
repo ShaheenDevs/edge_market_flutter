@@ -38,7 +38,7 @@ class LeaderBoardView extends StackedView<LeaderBoardViewModel> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: viewModel.topUsers
                         .map((user) => TopUserWidget(
-                            user: user, rank: user.withdrawBalance))
+                            user: user, rank: user.balance))
                         .toList(),
                   ),
 

@@ -18,7 +18,7 @@ class KycService {
     required File documentImage,
     required File paymentProof,
     required String documentType,
-    required String paymentId,
+    required String payment,
   }) async {
     try {
       final response = await _apiService.uploadKyc(
@@ -26,7 +26,7 @@ class KycService {
         documentImage: documentImage,
         documentType: documentType,
         paymentProof: paymentProof,
-        paymentId: paymentId,
+        payment: payment,
         userId: "${_authService.user?.id}",
       );
 

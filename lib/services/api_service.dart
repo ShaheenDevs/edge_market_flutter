@@ -47,7 +47,7 @@ class ApiService {
     required File documentImage,
     required File paymentProof,
     required String documentType,
-    required String paymentId,
+    required String payment,
     required String userId,
   }) async {
     final request = http.MultipartRequest(
@@ -57,7 +57,7 @@ class ApiService {
     }
 
     request.fields['documentType'] = documentType;
-    request.fields['paymentId'] = paymentId;
+    request.fields['payment'] = payment;
     request.fields['userId'] = userId;
     request.files.add(await http.MultipartFile.fromPath(
         'selfieImage', selfieImage.path,

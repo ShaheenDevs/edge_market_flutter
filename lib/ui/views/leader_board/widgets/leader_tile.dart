@@ -40,7 +40,7 @@ class LeaderTile extends ViewModelWidget<LeaderBoardViewModel> {
             child: Text(user.fullName,
                 style: const TextStyle(color: Colors.white, fontSize: 15)),
           ),
-          Text("${user.withdrawBalance ~/ 1000}k",
+          Text("${user.balance ~/ 1000}k",
               style: const TextStyle(color: Colors.white)),
         ],
       ),
