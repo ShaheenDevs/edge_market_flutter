@@ -117,22 +117,22 @@ class LoginView extends StackedView<LoginViewModel> {
                     ),
                   ),
                 ),
-                const Spacer(),
-                const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Language: ',
-                        style: TextStyle(color: kcLightGrey),
-                      ),
-                      TextSpan(
-                        text: 'English',
-                        style: TextStyle(color: kcPrimaryColor),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
+                // const Spacer(),
+                // const Text.rich(
+                //   TextSpan(
+                //     children: [
+                //       TextSpan(
+                //         text: 'Language: ',
+                //         style: TextStyle(color: kcLightGrey),
+                //       ),
+                //       TextSpan(
+                //         text: 'English',
+                //         style: TextStyle(color: kcPrimaryColor),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // const SizedBox(height: 16),
               ],
             ),
           ),

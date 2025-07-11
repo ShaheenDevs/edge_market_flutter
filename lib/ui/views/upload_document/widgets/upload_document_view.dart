@@ -6,7 +6,7 @@ import 'package:edge_market/ui/common/ui_helpers.dart';
 import '../upload_document_viewmodel.dart';
 
 class UploadDocumentBuildOptionTile
-    extends StackedView<UploadDocumentViewModel> {
+    extends ViewModelWidget<UploadDocumentViewModel> {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
@@ -18,8 +18,7 @@ class UploadDocumentBuildOptionTile
   });
 
   @override
-  Widget builder(
-      BuildContext context, UploadDocumentViewModel viewModel, Widget? child) {
+  Widget build(BuildContext context, UploadDocumentViewModel viewModel) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -41,14 +40,12 @@ class UploadDocumentBuildOptionTile
                 ),
               ),
             ),
-            const Icon(Icons.chevron_right, color: kcWhiteColor),
+            viewModel.type == label
+                ? const Icon(Icons.check, color: kcPrimaryColor)
+                : const Icon(Icons.chevron_right, color: kcWhiteColor),
           ],
         ),
       ),
     );
   }
-
-  @override
-  UploadDocumentViewModel viewModelBuilder(BuildContext context) =>
-      UploadDocumentViewModel();
 }

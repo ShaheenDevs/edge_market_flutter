@@ -85,7 +85,7 @@ class KycView extends StackedView<KycViewModel> {
 
                     /// Pay Button
                     Button(
-                      btnText: "Pay 15\$",
+                      btnText: "Submit KYC",
                       onClick: () {
                         viewModel.submitKyc();
                       },
@@ -93,7 +93,7 @@ class KycView extends StackedView<KycViewModel> {
                     ),
                     verticalSpaceTiny,
                     const Text(
-                      "kyc will cost you 15\$ please pay to get verified",
+                      "kyc will cost you 5000 please pay to get verified",
                       style: TextStyle(color: kcVeryLightGrey, fontSize: 11),
                     ),
                     const Spacer(),
@@ -103,18 +103,18 @@ class KycView extends StackedView<KycViewModel> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Logout", style: TextStyle(color: kcPrimaryColor)),
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                  text: 'Language: ',
-                                  style: TextStyle(color: kcLightGrey)),
-                              TextSpan(
-                                  text: 'English',
-                                  style: TextStyle(color: kcPrimaryColor)),
-                            ],
-                          ),
-                        ),
+                        // Text.rich(
+                        //   TextSpan(
+                        //     children: [
+                        //       TextSpan(
+                        //           text: 'Language: ',
+                        //           style: TextStyle(color: kcLightGrey)),
+                        //       TextSpan(
+                        //           text: 'English',
+                        //           style: TextStyle(color: kcPrimaryColor)),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                     verticalSpaceSmall,

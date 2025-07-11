@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:edge_market/ui/views/home/widgets/animated_line.dart';
@@ -125,47 +126,58 @@ class HomeView extends StackedView<HomeViewModel> {
                         // verticalSpaceMedium,
 
                         /// Transactions Title
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Latest Transactions",
+                            const Text("Latest Transactions",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 16)),
-                            // Text("See all",
-                            //     style: TextStyle(
-                            //         color: Colors.white60, fontSize: 12)),
+                            IconButton(
+                                onPressed: viewModel.fetchTransactions,
+                                icon: const Icon(Icons.refresh,
+                                    color: kcVeryLightGrey, size: 16)),
                           ],
                         ),
-                        verticalSpaceSmall,
 
                         /// Transactions List
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: viewModel.transactions.length,
-                          itemBuilder: (context, index) {
-                            final txn = viewModel.transactions[index];
-                            return TransactionTile(
-                              icon: txn['type'] == 'deposit'
-                                  ? Icons.savings
-                                  : Icons.wallet,
-                              title: 'Phantom wallet',
-                              subtitle: txn['type'] == 'deposit'
-                                  ? 'funds added'
-                                  : '--withdraw',
-                              amount: "\$${txn['amount'].toStringAsFixed(2)}",
-                              date: DateTime.parse(txn['createdAt'])
-                                  .toLocal()
-                                  .toString()
-                                  .split(' ')[0],
-                              subtitleColor: txn['type'] == 'deposit'
-                                  ? Colors.lightBlueAccent
-                                  : (txn['status'] == 'approved'
-                                      ? Colors.redAccent
-                                      : Colors.orangeAccent),
-                            );
-                          },
-                        ),
+                        viewModel.transactions.isEmpty
+                            ? const Center(
+                                child: Text(
+                                "No Recourd Found",
+                                style: TextStyle(
+                                  color: kcLightGrey,
+                                ),
+                              ))
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: viewModel.transactions.length,
+                                itemBuilder: (context, index) {
+                                  final txn = viewModel.transactions[index];
+                                  return TransactionTile(
+                                    icon: txn['type'] == 'deposit'
+                                        ? Icons.savings
+                                        : Icons.wallet,
+                                    title: txn['type'] == 'deposit'
+                                        ? 'funds added'
+                                        : 'Withdraw',
+                                    subtitle: txn['status'] == 'approved'
+                                        ? 'Approved'
+                                        : 'Pending',
+                                    amount:
+                                        "${txn['amount'].toStringAsFixed(2)}",
+                                    date: DateTime.parse(txn['createdAt'])
+                                        .toLocal()
+                                        .toString()
+                                        .split(' ')[0],
+                                    subtitleColor: txn['type'] == 'deposit'
+                                        ? Colors.lightBlueAccent
+                                        : (txn['status'] == 'approved'
+                                            ? Colors.lightBlueAccent
+                                            : Colors.orangeAccent),
+                                  );
+                                },
+                              ),
                       ],
                     ),
                   ),

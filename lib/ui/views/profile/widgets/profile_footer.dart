@@ -18,10 +18,10 @@ class ProfileFooter extends ViewModelWidget<ProfileViewModel> {
             style: TextStyle(color: Colors.pink),
           ),
         ),
-        const Text(
-          "Language: English",
-          style: TextStyle(color: Colors.white70),
-        ),
+        // const Text(
+        //   "Language: English",
+        //   style: TextStyle(color: Colors.white70),
+        // ),
       ],
     );
   }

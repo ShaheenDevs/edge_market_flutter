@@ -35,7 +35,7 @@ class StartupView extends StackedView<StartupViewModel> {
                   Row(
                     children: [
                       Text(
-                        'Welcome to\nappNameHere',
+                        'Welcome to\nEdge Market',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.w400,
