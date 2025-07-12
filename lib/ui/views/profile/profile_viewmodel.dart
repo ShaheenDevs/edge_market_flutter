@@ -25,11 +25,11 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   void onChatSupport() {
-    // Open support chat
+    _navigationService.navigateToChatSupportView();
   }
 
   void onPrivacy() {
-    // Show Privacy & Terms
+    _navigationService.navigateToPrivacyTermsView();
   }
 
   Future<void> onLogout() async {

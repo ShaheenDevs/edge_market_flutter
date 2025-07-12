@@ -48,7 +48,8 @@ class UpdateAppView extends StackedView<UpdateAppViewModel> {
                     await launchUrl(url, mode: LaunchMode.externalApplication);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Could not open update link")),
+                      const SnackBar(
+                          content: Text("Could not open update link")),
                     );
                   }
                 },

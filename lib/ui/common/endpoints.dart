@@ -25,4 +25,8 @@ class Endpoints {
   static const String walletTransactions = "/wallet/transactions/";
   static const String paymentMethods = '/payment';
   static const String version = '/version';
+
+  static const String sendMessage = "/message/sendMessage";
+  static const String getMessages = "/message/getMessages";
+  static const String getUserChatList = "/message/getUserList";
 }

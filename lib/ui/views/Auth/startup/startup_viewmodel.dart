@@ -13,7 +13,7 @@ class StartupViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
   final _appVersionService = locator<AppVersionService>();
-  String _appVersion = '1.0.0';
+  final String _appVersion = '1.0.0';
 
   // Place anything here that needs to happen before we get into the application
   Future<void> runStartupLogic() async {

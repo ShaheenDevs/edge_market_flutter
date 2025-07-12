@@ -6,6 +6,7 @@ import 'package:edge_market/services/api_service.dart';
 import 'package:edge_market/services/auth_service.dart';
 import 'package:edge_market/services/leaderboard_service.dart';
 import 'package:edge_market/services/kyc_service.dart';
+import 'package:edge_market/services/chat_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -20,6 +21,7 @@ import 'test_helpers.mocks.dart';
     MockSpec<AuthService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<LeaderboardService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<KycService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<ChatService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
   ],
 )
@@ -31,6 +33,7 @@ void registerServices() {
   getAndRegisterAuthService();
   getAndRegisterLeaderboardService();
   getAndRegisterKycService();
+  getAndRegisterChatService();
 // @stacked-mock-register
 }
 
@@ -113,6 +116,13 @@ MockKycService getAndRegisterKycService() {
   _removeRegistrationIfExists<KycService>();
   final service = MockKycService();
   locator.registerSingleton<KycService>(service);
+  return service;
+}
+
+MockChatService getAndRegisterChatService() {
+  _removeRegistrationIfExists<ChatService>();
+  final service = MockChatService();
+  locator.registerSingleton<ChatService>(service);
   return service;
 }
 // @stacked-mock-create

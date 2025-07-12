@@ -13,7 +13,6 @@ import 'package:edge_market/ui/views/Auth/login/login_view.dart';
 import 'package:edge_market/ui/views/Auth/signup/signup_view.dart';
 import 'package:edge_market/ui/views/kyc/kyc_view.dart';
 import 'package:edge_market/ui/views/upload_document/upload_document_view.dart';
-import 'package:edge_market/ui/views/privacy_terms/privacy_terms_view.dart';
 import 'package:edge_market/ui/bottom_sheets/withdraw/withdraw_sheet.dart';
 import 'package:edge_market/ui/views/withdraw/withdraw_view.dart';
 import 'package:edge_market/ui/views/leader_board/leader_board_view.dart';
@@ -26,9 +25,12 @@ import 'package:edge_market/services/leaderboard_service.dart';
 import 'package:edge_market/services/kyc_service.dart';
 import 'package:edge_market/ui/views/notification/notification_view.dart';
 import 'package:edge_market/ui/bottom_sheets/payment_method/payment_method_sheet.dart';
-import 'package:edge_market/ui/views/kyc_pending/kyc_pending_view.dart';
-import 'package:edge_market/ui/views/kyc_rejected/kyc_rejected_view.dart';
-import 'package:edge_market/ui/views/update_app/update_app_view.dart';
+import 'package:edge_market/ui/views/kyc/kyc_pending/kyc_pending_view.dart';
+import 'package:edge_market/ui/views/kyc/kyc_rejected/kyc_rejected_view.dart';
+import 'package:edge_market/ui/views/Auth/update_app/update_app_view.dart';
+import 'package:edge_market/ui/views/chat_support/chat_support_view.dart';
+import 'package:edge_market/services/chat_service.dart';
+import 'package:edge_market/ui/views/privacy_terms/privacy_terms_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -39,7 +41,6 @@ import 'package:edge_market/ui/views/update_app/update_app_view.dart';
     MaterialRoute(page: SignupView),
     MaterialRoute(page: KycView),
     MaterialRoute(page: UploadDocumentView),
-    MaterialRoute(page: PrivacyTermsView),
     MaterialRoute(page: WithdrawView),
     MaterialRoute(page: LeaderBoardView),
     MaterialRoute(page: BottonBarView),
@@ -49,6 +50,8 @@ import 'package:edge_market/ui/views/update_app/update_app_view.dart';
     MaterialRoute(page: KycPendingView),
     MaterialRoute(page: KycRejectedView),
     MaterialRoute(page: UpdateAppView),
+    MaterialRoute(page: ChatSupportView),
+    MaterialRoute(page: PrivacyTermsView),
 // @stacked-route
   ],
   dependencies: [
@@ -64,6 +67,7 @@ import 'package:edge_market/ui/views/update_app/update_app_view.dart';
     LazySingleton(classType: WalletService),
     LazySingleton(classType: PaymentMethodService),
     LazySingleton(classType: AppVersionService),
+    LazySingleton(classType: ChatService),
 // @stacked-service
   ],
   bottomsheets: [
