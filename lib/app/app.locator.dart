@@ -18,6 +18,7 @@ import '../services/leaderboard_service.dart';
 import '../services/notification.dart';
 import '../services/payments_service.dart';
 import '../services/referral_service.dart';
+import '../services/versions_service.dart';
 import '../services/wallet.dart';
 
 final locator = StackedLocator.instance;
@@ -42,4 +43,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => NotificationService());
   locator.registerLazySingleton(() => WalletService());
   locator.registerLazySingleton(() => PaymentMethodService());
+  locator.registerLazySingleton(() => AppVersionService());
 }

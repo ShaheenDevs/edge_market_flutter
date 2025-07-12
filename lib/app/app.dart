@@ -1,6 +1,7 @@
 import 'package:edge_market/services/notification.dart';
 import 'package:edge_market/services/payments_service.dart';
 import 'package:edge_market/services/referral_service.dart';
+import 'package:edge_market/services/versions_service.dart';
 import 'package:edge_market/services/wallet.dart';
 import 'package:edge_market/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:edge_market/ui/dialogs/info_alert/info_alert_dialog.dart';
@@ -27,6 +28,7 @@ import 'package:edge_market/ui/views/notification/notification_view.dart';
 import 'package:edge_market/ui/bottom_sheets/payment_method/payment_method_sheet.dart';
 import 'package:edge_market/ui/views/kyc_pending/kyc_pending_view.dart';
 import 'package:edge_market/ui/views/kyc_rejected/kyc_rejected_view.dart';
+import 'package:edge_market/ui/views/update_app/update_app_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -46,6 +48,7 @@ import 'package:edge_market/ui/views/kyc_rejected/kyc_rejected_view.dart';
     MaterialRoute(page: NotificationView),
     MaterialRoute(page: KycPendingView),
     MaterialRoute(page: KycRejectedView),
+    MaterialRoute(page: UpdateAppView),
 // @stacked-route
   ],
   dependencies: [
@@ -60,6 +63,7 @@ import 'package:edge_market/ui/views/kyc_rejected/kyc_rejected_view.dart';
     LazySingleton(classType: NotificationService),
     LazySingleton(classType: WalletService),
     LazySingleton(classType: PaymentMethodService),
+    LazySingleton(classType: AppVersionService),
 // @stacked-service
   ],
   bottomsheets: [

@@ -5,6 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:edge_market/models/app_version.dart' as _i19;
 import 'package:edge_market/ui/views/Auth/login/login_view.dart' as _i4;
 import 'package:edge_market/ui/views/Auth/signup/signup_view.dart' as _i5;
 import 'package:edge_market/ui/views/Auth/startup/startup_view.dart' as _i3;
@@ -22,13 +23,14 @@ import 'package:edge_market/ui/views/notification/notification_view.dart'
 import 'package:edge_market/ui/views/privacy_terms/privacy_terms_view.dart'
     as _i8;
 import 'package:edge_market/ui/views/profile/profile_view.dart' as _i13;
+import 'package:edge_market/ui/views/update_app/update_app_view.dart' as _i17;
 import 'package:edge_market/ui/views/upload_document/upload_document_view.dart'
     as _i7;
 import 'package:edge_market/ui/views/withdraw/withdraw_view.dart' as _i9;
-import 'package:flutter/material.dart' as _i17;
+import 'package:flutter/material.dart' as _i18;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i18;
+import 'package:stacked_services/stacked_services.dart' as _i20;
 
 class Routes {
   static const homeView = '/home-view';
@@ -61,6 +63,8 @@ class Routes {
 
   static const kycRejectedView = '/kyc-rejected-view';
 
+  static const updateAppView = '/update-app-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -77,6 +81,7 @@ class Routes {
     notificationView,
     kycPendingView,
     kycRejectedView,
+    updateAppView,
   };
 }
 
@@ -142,96 +147,110 @@ class StackedRouter extends _i1.RouterBase {
       Routes.kycRejectedView,
       page: _i16.KycRejectedView,
     ),
+    _i1.RouteDef(
+      Routes.updateAppView,
+      page: _i17.UpdateAppView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.LoginView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.LoginView(),
         settings: data,
       );
     },
     _i5.SignupView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SignupView(),
         settings: data,
       );
     },
     _i6.KycView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.KycView(),
         settings: data,
       );
     },
     _i7.UploadDocumentView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.UploadDocumentView(),
         settings: data,
       );
     },
     _i8.PrivacyTermsView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.PrivacyTermsView(),
         settings: data,
       );
     },
     _i9.WithdrawView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.WithdrawView(),
         settings: data,
       );
     },
     _i10.LeaderBoardView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.LeaderBoardView(),
         settings: data,
       );
     },
     _i11.BottonBarView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.BottonBarView(),
         settings: data,
       );
     },
     _i12.MyNetworkView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.MyNetworkView(),
         settings: data,
       );
     },
     _i13.ProfileView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.ProfileView(),
         settings: data,
       );
     },
     _i14.NotificationView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.NotificationView(),
         settings: data,
       );
     },
     _i15.KycPendingView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i15.KycPendingView(),
         settings: data,
       );
     },
     _i16.KycRejectedView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i16.KycRejectedView(),
+        settings: data,
+      );
+    },
+    _i17.UpdateAppView: (data) {
+      final args = data.getArgs<UpdateAppViewArguments>(nullOk: false);
+      return _i18.MaterialPageRoute<dynamic>(
+        builder: (context) => _i17.UpdateAppView(
+            key: args.key,
+            appVersion: args.appVersion,
+            showUpdateForceButton: args.showUpdateForceButton),
         settings: data,
       );
     },
@@ -244,7 +263,39 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i18.NavigationService {
+class UpdateAppViewArguments {
+  const UpdateAppViewArguments({
+    this.key,
+    required this.appVersion,
+    required this.showUpdateForceButton,
+  });
+
+  final _i18.Key? key;
+
+  final _i19.AppVersion appVersion;
+
+  final bool showUpdateForceButton;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "appVersion": "$appVersion", "showUpdateForceButton": "$showUpdateForceButton"}';
+  }
+
+  @override
+  bool operator ==(covariant UpdateAppViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key &&
+        other.appVersion == appVersion &&
+        other.showUpdateForceButton == showUpdateForceButton;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ appVersion.hashCode ^ showUpdateForceButton.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i20.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -455,6 +506,27 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToUpdateAppView({
+    _i18.Key? key,
+    required _i19.AppVersion appVersion,
+    required bool showUpdateForceButton,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.updateAppView,
+        arguments: UpdateAppViewArguments(
+            key: key,
+            appVersion: appVersion,
+            showUpdateForceButton: showUpdateForceButton),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -659,6 +731,27 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.kycRejectedView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithUpdateAppView({
+    _i18.Key? key,
+    required _i19.AppVersion appVersion,
+    required bool showUpdateForceButton,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.updateAppView,
+        arguments: UpdateAppViewArguments(
+            key: key,
+            appVersion: appVersion,
+            showUpdateForceButton: showUpdateForceButton),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

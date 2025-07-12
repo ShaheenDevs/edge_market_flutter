@@ -851,7 +851,7 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
     required _i9.File? documentImage,
     required _i9.File? paymentProof,
     required String? documentType,
-    required String? paymentId,
+    required String? payment,
     required String? userId,
   }) =>
       (super.noSuchMethod(
@@ -863,7 +863,7 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
             #documentImage: documentImage,
             #paymentProof: paymentProof,
             #documentType: documentType,
-            #paymentId: paymentId,
+            #payment: payment,
             #userId: userId,
           },
         ),
@@ -878,7 +878,7 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
               #documentImage: documentImage,
               #paymentProof: paymentProof,
               #documentType: documentType,
-              #paymentId: paymentId,
+              #payment: payment,
               #userId: userId,
             },
           ),
@@ -894,7 +894,7 @@ class MockApiService extends _i1.Mock implements _i8.ApiService {
               #documentImage: documentImage,
               #paymentProof: paymentProof,
               #documentType: documentType,
-              #paymentId: paymentId,
+              #payment: payment,
               #userId: userId,
             },
           ),
@@ -1025,7 +1025,7 @@ class MockKycService extends _i1.Mock implements _i14.KycService {
     required _i9.File? documentImage,
     required _i9.File? paymentProof,
     required String? documentType,
-    required String? paymentId,
+    required String? payment,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1036,7 +1036,7 @@ class MockKycService extends _i1.Mock implements _i14.KycService {
             #documentImage: documentImage,
             #paymentProof: paymentProof,
             #documentType: documentType,
-            #paymentId: paymentId,
+            #payment: payment,
           },
         ),
         returnValue: _i6.Future<_i15.KycModel?>.value(),

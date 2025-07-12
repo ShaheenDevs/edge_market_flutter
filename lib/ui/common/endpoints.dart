@@ -24,4 +24,5 @@ class Endpoints {
   static const String walletReject = "/wallet/reject/";
   static const String walletTransactions = "/wallet/transactions/";
   static const String paymentMethods = '/payment';
+  static const String version = '/version';
 }

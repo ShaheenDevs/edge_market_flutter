@@ -1,6 +1,8 @@
+import 'package:edge_market/models/app_version.dart';
 import 'package:edge_market/models/user.dart';
 import 'package:edge_market/services/api_service.dart';
 import 'package:edge_market/services/auth_service.dart';
+import 'package:edge_market/services/versions_service.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:edge_market/app/app.locator.dart';
@@ -10,11 +12,24 @@ import 'package:stacked_services/stacked_services.dart';
 class StartupViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
+  final _appVersionService = locator<AppVersionService>();
+  String _appVersion = '1.0.0';
 
   // Place anything here that needs to happen before we get into the application
   Future<void> runStartupLogic() async {
     // Get token from ApiService (if needed for headers/auth)
     await locator<ApiService>().getToken();
+    // Get the latest app version
+    AppVersion appVersion = await _appVersionService.getVersion();
+    // Check if the app version is outdated
+    if (appVersion.version != _appVersion) {
+      // If outdated, navigate to the update app view
+      bool? result = await _navigationService.navigateToUpdateAppView(
+        appVersion: appVersion,
+        showUpdateForceButton: appVersion.forceUpdateVersion != _appVersion,
+      );
+      if (result != true) return;
+    }
 
     // Try to get the locally saved user
     UserModel? localUser = await _authService.getLocalUser();
