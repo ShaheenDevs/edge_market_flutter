@@ -90,7 +90,7 @@ class SignupViewModel extends BaseViewModel {
       "email": email,
       "phoneNo": fullPhone,
       "password": password,
-      "referralCode": cleanedReferral
+      "referralCode": cleanedReferral ?? 3001
     };
 
     final user = await _authService.signUp(data);

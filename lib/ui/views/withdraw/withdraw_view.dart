@@ -1,6 +1,7 @@
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
 import 'package:edge_market/ui/widgets/common/custom_text_field/custom_text_field.dart';
+import 'package:edge_market/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'withdraw_viewmodel.dart';
@@ -154,11 +155,7 @@ class WithdrawView extends StackedView<WithdrawViewModel> {
             ),
           ),
           if (viewModel.isBusy)
-            const Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
-            ),
+           const MyLoading()
         ],
       ),
     );

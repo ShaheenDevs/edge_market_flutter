@@ -1,6 +1,7 @@
 import 'package:edge_market/models/notification.dart';
 import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
+import 'package:edge_market/ui/widgets/loading.dart';
 import 'package:flutter/material.dart' hide Notification;
 import 'package:stacked/stacked.dart';
 import 'notification_viewmodel.dart';
@@ -25,7 +26,7 @@ class NotificationView extends StackedView<NotificationViewModel> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: viewModel.isBusy
-          ? const Center(child: CircularProgressIndicator())
+          ? const MyLoading()
           : Background(
               child: RefreshIndicator(
                 onRefresh: viewModel.fetchNotifications,

@@ -1,5 +1,7 @@
 import 'package:edge_market/models/app_version.dart';
+import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
+import 'package:edge_market/ui/widgets/common/button/button.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,10 +23,8 @@ class UpdateAppView extends StackedView<UpdateAppViewModel> {
     UpdateAppViewModel viewModel,
     Widget? child,
   ) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Scaffold(
-      backgroundColor: colorScheme.background,
+      backgroundColor: kcBackgroundColor,
       body: Background(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -33,8 +33,8 @@ class UpdateAppView extends StackedView<UpdateAppViewModel> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 // 🚀 Icon
-                const Icon(Icons.system_update,
-                    size: 80, color: Colors.deepPurple),
+                const Icon(Icons.update,
+                    size: 80, color: kcPrimaryColor),
 
                 const SizedBox(height: 20),
 
@@ -42,9 +42,9 @@ class UpdateAppView extends StackedView<UpdateAppViewModel> {
                 const Text(
                   "🚀 Update Available",
                   style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: kcVeryLightGrey),
                   textAlign: TextAlign.center,
                 ),
 
@@ -53,7 +53,7 @@ class UpdateAppView extends StackedView<UpdateAppViewModel> {
                 // Subtitle
                 const Text(
                   "A new version of the app is ready to enhance your experience!\nGet the latest features, bug fixes, and performance improvements.",
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16, color: kcVeryLightGrey),
                   textAlign: TextAlign.center,
                 ),
 
@@ -63,16 +63,14 @@ class UpdateAppView extends StackedView<UpdateAppViewModel> {
                 Text(
                   "Version ${appVersion.version} is available.\n${showUpdateForceButton ? 'You must update to continue.' : 'Please consider updating.'}",
                   style: TextStyle(
-                      fontSize: 14,
-                      color: colorScheme.onBackground.withOpacity(0.7)),
+                      fontSize: 14, color: kcVeryLightGrey.withOpacity(0.7)),
                   textAlign: TextAlign.center,
                 ),
 
                 const SizedBox(height: 30),
-
-                // Update Button
-                ElevatedButton.icon(
-                  onPressed: () async {
+                Button(
+                  btnText: "🔄 Update Now",
+                  onClick: () async {
                     final url = Uri.parse(appVersion.url);
                     if (await canLaunchUrl(url)) {
                       await launchUrl(url,
@@ -84,19 +82,20 @@ class UpdateAppView extends StackedView<UpdateAppViewModel> {
                       );
                     }
                   },
-                  icon: const Icon(Icons.update),
-                  label: const Text("🔄 Update Now"),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 14),
-                  ),
+                  bgColor: null,
                 ),
 
                 if (!showUpdateForceButton) ...[
                   const SizedBox(height: 15),
                   TextButton(
                     onPressed: viewModel.back,
-                    child: const Text("Skip for now"),
+                    child: const Text(
+                      "Skip for now",
+                      style: TextStyle(
+                        color: kcPrimaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                 ],
               ],

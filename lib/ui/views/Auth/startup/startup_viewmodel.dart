@@ -47,7 +47,7 @@ class StartupViewModel extends BaseViewModel {
         if (user.kycStatus == "not_applied") {
           _navigationService.replaceWithKycView();
         } else if (user.kycStatus == "approved") {
-          _navigationService.replaceWithBottonBarView();
+          _navigationService.replaceWithLoginView();
         } else if (user.kycStatus == "pending") {
           _navigationService.replaceWithKycPendingView();
         } else if (user.kycStatus == "rejected") {

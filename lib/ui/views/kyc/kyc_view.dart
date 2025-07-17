@@ -1,5 +1,6 @@
 import 'package:edge_market/ui/views/kyc/widgets/kyc_view.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
+import 'package:edge_market/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:edge_market/ui/common/app_colors.dart';
@@ -56,6 +57,8 @@ class KycView extends StackedView<KycViewModel> {
                       subtitle:
                           "To check your personal information are correct",
                       onTap: viewModel.takeIdPicture,
+                      selected: viewModel.idDocument != null &&
+                          viewModel.type != null,
                     ),
                     verticalSpaceSmall,
 
@@ -65,6 +68,7 @@ class KycView extends StackedView<KycViewModel> {
                       title: "Take a selfie of yourself",
                       subtitle: "To match your face to your ID photo",
                       onTap: viewModel.takeSelfie,
+                      selected: viewModel.selfie != null,
                     ),
                     verticalSpaceSmall,
                     KycOptionTile(
@@ -73,6 +77,7 @@ class KycView extends StackedView<KycViewModel> {
                       subtitle:
                           "Choose how you paid (e.g. JazzCash, Easypaisa)",
                       onTap: viewModel.selectPaymentMethod,
+                      selected: viewModel.selectedPaymentMethod != null,
                     ),
                     verticalSpaceSmall,
                     KycOptionTile(
@@ -80,6 +85,7 @@ class KycView extends StackedView<KycViewModel> {
                       title: "Upload Payment Proof",
                       subtitle: "Screenshot or receipt of your payment",
                       onTap: viewModel.uploadPaymentProof,
+                      selected: viewModel.paymentProof != null,
                     ),
                     verticalSpaceLarge,
 
@@ -123,7 +129,7 @@ class KycView extends StackedView<KycViewModel> {
               ),
             ),
           ),
-          if (viewModel.isBusy) const Center(child: CircularProgressIndicator())
+          if (viewModel.isBusy) const MyLoading()
         ],
       ),
     );

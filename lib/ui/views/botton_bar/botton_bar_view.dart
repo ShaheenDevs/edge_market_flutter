@@ -1,11 +1,9 @@
+import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/views/home/home_view.dart';
 import 'package:edge_market/ui/views/leader_board/leader_board_view.dart';
 import 'package:edge_market/ui/views/my_network/my_network_view.dart';
 import 'package:edge_market/ui/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
-import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
-
-import 'botton_bar_viewmodel.dart';
 
 class BottonBarView extends StatefulWidget {
   const BottonBarView({Key? key}) : super(key: key);
@@ -14,51 +12,54 @@ class BottonBarView extends StatefulWidget {
   State<BottonBarView> createState() => _BottonBarViewState();
 }
 
-class _BottonBarViewState extends State<BottonBarView>
-    with TickerProviderStateMixin {
-  late final BottonBarViewModel viewModel;
+class _BottonBarViewState extends State<BottonBarView> {
+  int _selectedIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    viewModel = BottonBarViewModel();
-    viewModel.initController(this);
+  final List<Widget> _screens = const [
+    HomeView(),
+    LeaderBoardView(),
+    MyNetworkView(),
+    ProfileView(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        bottomNavigationBar: MotionTabBar(
-          controller: viewModel.tabController,
-          initialSelectedTab: "Home",
-          labels: const ["Home", "Leader Board", "My Network", "Profile"],
-          icons: const [
-            Icons.home,
-            Icons.leaderboard,
-            Icons.network_check,
-            Icons.person
-          ],
-          tabBarColor: Colors.white,
-          tabIconColor: Colors.grey,
-          tabIconSelectedColor: Colors.blue,
-          tabSelectedColor: Colors.blue.shade50,
-          onTabItemSelected: (int value) {
-            viewModel.tabController.index = value;
-          },
-        ),
-        body: TabBarView(
-          controller: viewModel.tabController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [
-            HomeView(),
-            LeaderBoardView(),
-            MyNetworkView(),
-            ProfileView(),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: kcBackgroundColor,
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: kcPrimaryColor,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: kcBackgroundColor,
+        type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: const TextStyle(fontSize: 12),
+        unselectedLabelStyle: const TextStyle(fontSize: 12),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.leaderboard),
+            label: "Leader Board",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.network_check),
+            label: "My Network",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+          ),
+        ],
       ),
     );
   }

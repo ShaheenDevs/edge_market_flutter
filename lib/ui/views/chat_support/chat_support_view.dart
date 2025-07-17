@@ -1,6 +1,7 @@
 import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
 import 'package:edge_market/ui/widgets/common/custom_text_field/custom_text_field.dart';
+import 'package:edge_market/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'chat_support_viewmodel.dart';
@@ -30,7 +31,7 @@ class ChatSupportView extends StackedView<ChatSupportViewModel> {
             // Chat messages list
             Expanded(
               child: viewModel.isBusy
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const MyLoading()
                   : ListView.builder(
                       reverse: true,
                       padding: const EdgeInsets.all(16.0),

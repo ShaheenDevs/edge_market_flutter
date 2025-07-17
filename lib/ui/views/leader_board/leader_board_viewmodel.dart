@@ -1,11 +1,16 @@
 import 'package:edge_market/models/leaderboard.dart';
+import 'package:edge_market/models/user.dart';
+import 'package:edge_market/services/auth_service.dart';
 import 'package:edge_market/services/leaderboard_service.dart';
 import 'package:edge_market/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
 
 class LeaderBoardViewModel extends BaseViewModel {
   final _leaderboardService = locator<LeaderboardService>();
+  final _authService = locator<AuthService>();
 
+
+  UserModel? get user => _authService.user;
   List<LeaderboardUser> _allUsers = [];
 
   List<LeaderboardUser> get topUsers => _allUsers.take(3).toList();

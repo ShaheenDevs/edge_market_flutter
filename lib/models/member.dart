@@ -17,7 +17,7 @@ class Member {
 
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
-      id: json['id'] ?? 0,
+      id: json['id'] ?? -1,
       fullName: json['fullName'] ?? 'Unknown',
       email: json['email'] ?? '',
       profile: json['profile'] ?? '',

@@ -36,6 +36,10 @@ class UploadDocumentViewModel extends BaseViewModel {
       idDocument = File(picked.path);
       notifyListeners();
       log("ID Document selected: ${picked.path}");
+      if (idDocument != null && type != null) {
+        _navigationService
+            .back(result: {"idDocument": idDocument, "type": type});
+      }
     } else {
       log("ID Document selection cancelled.");
     }

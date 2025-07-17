@@ -5,6 +5,7 @@ import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:edge_market/ui/views/home/widgets/animated_line.dart';
 import 'package:edge_market/ui/views/home/widgets/transaction_tile.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
+import 'package:edge_market/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'home_viewmodel.dart';
@@ -185,7 +186,7 @@ class HomeView extends StackedView<HomeViewModel> {
               ),
             ),
           ),
-          if (viewModel.isBusy) const Center(child: CircularProgressIndicator())
+          if (viewModel.isBusy) const MyLoading()
         ],
       ),
     );

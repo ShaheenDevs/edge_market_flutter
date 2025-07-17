@@ -25,11 +25,28 @@ class TopUserWidget extends ViewModelWidget<LeaderBoardViewModel> {
               padding: const EdgeInsets.all(6.0),
               child: CircleAvatar(
                 radius: 30,
-                backgroundImage: user.profile.isNotEmpty
-                    ? CachedNetworkImageProvider(
-                        "${Endpoints.baseUrl}/${user.profile}") as ImageProvider
-                    : const AssetImage("assets/images/user_avatar.png")
-                        as ImageProvider,
+                // backgroundImage: user.profile.isNotEmpty
+                //     ? CachedNetworkImageProvider(
+                //         "${Endpoints.baseUrl}/${user.profile}") as ImageProvider
+                //     : const AssetImage("assets/images/user_avatar.png")
+                //         as ImageProvider,
+                child: CachedNetworkImage(
+                  imageUrl: "${Endpoints.baseUrl}/${user.profile}",
+                  imageBuilder: (context, imageProvider) => CircleAvatar(
+                    radius: 30,
+                    backgroundImage: imageProvider,
+                  ),
+                  placeholder: (context, url) => const CircleAvatar(
+                    radius: 30,
+                    backgroundImage:
+                        AssetImage("assets/images/user_avatar.png"),
+                  ),
+                  errorWidget: (context, url, error) => const CircleAvatar(
+                    radius: 30,
+                    backgroundImage:
+                        AssetImage("assets/images/user_avatar.png"),
+                  ),
+                ),
               ),
             ),
             Positioned(

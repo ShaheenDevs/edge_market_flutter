@@ -1,6 +1,7 @@
 import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
 import 'package:edge_market/ui/widgets/common/background/background.dart';
+import 'package:edge_market/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'leader_board_viewmodel.dart';
@@ -15,51 +16,77 @@ class LeaderBoardView extends StackedView<LeaderBoardViewModel> {
       BuildContext context, LeaderBoardViewModel viewModel, Widget? child) {
     return Scaffold(
       backgroundColor: kcBackgroundColor,
-      body: Stack(
-        children: [
-          Background(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Leader Board",
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  verticalSpaceMedium,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Background(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Leader Board",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    verticalSpaceMedium,
 
-                  /// Top 3 Users Section
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: viewModel.topUsers
-                        .map((user) =>
-                            TopUserWidget(user: user, rank: user.balance))
-                        .toList(),
-                  ),
+                    /// Top 3 Users Section
+                    Stack(
+                      children: [
+                        // First user centered at the top
+                        if (viewModel.topUsers.length > 1)
+                          Center(
+                            child: TopUserWidget(
+                              user: viewModel.topUsers[0],
+                              rank: viewModel.topUsers[0].balance,
+                            ),
+                          ),
 
-                  const SizedBox(height: 20),
+                        // Second and third users in a row
+                        Padding(
+                          padding: const EdgeInsets.only(top: 35.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              if (viewModel.topUsers.length > 1)
+                                TopUserWidget(
+                                  user: viewModel.topUsers[1],
+                                  rank: viewModel.topUsers[1].balance,
+                                ),
+                              if (viewModel.topUsers.length > 2)
+                                TopUserWidget(
+                                  user: viewModel.topUsers[2],
+                                  rank: viewModel.topUsers[2].balance,
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
 
-                  /// Rest of the Leaderboard
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: viewModel.restUsers.length,
-                    itemBuilder: (context, index) {
-                      final user = viewModel.restUsers[index];
-                      return LeaderTile(user: user);
-                    },
-                  ),
-                ],
+                    const SizedBox(height: 20),
+
+                    /// Rest of the Leaderboard
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: viewModel.restUsers.length,
+                        itemBuilder: (context, index) {
+                          final user = viewModel.restUsers[index];
+                          return LeaderTile(user: user);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          if (viewModel.isBusy) const CircularProgressIndicator()
-        ],
+            if (viewModel.isBusy) const MyLoading()
+          ],
+        ),
       ),
     );
   }

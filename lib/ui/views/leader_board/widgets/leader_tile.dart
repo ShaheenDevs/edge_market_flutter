@@ -13,13 +13,13 @@ class LeaderTile extends ViewModelWidget<LeaderBoardViewModel> {
 
   @override
   Widget build(BuildContext context, LeaderBoardViewModel viewModel) {
-    final bool isYou = user.fullName.toLowerCase() == 'you';
+    final bool isYou = user.fullName.toLowerCase() == viewModel.user?.fullName.toUpperCase();
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: isYou ? const Color(0xFFEC5B73) : const Color(0xFF1A1A1A),
+        color: isYou ? const Color(0xFFEC5B73) : const Color(0xFF252728),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

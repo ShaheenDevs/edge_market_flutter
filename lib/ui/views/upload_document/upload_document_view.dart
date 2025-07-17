@@ -1,5 +1,4 @@
 import 'package:edge_market/ui/widgets/common/background/background.dart';
-import 'package:edge_market/ui/widgets/common/button/button.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:edge_market/ui/common/app_colors.dart';
@@ -77,36 +76,36 @@ class UploadDocumentView extends StackedView<UploadDocumentViewModel> {
                 ),
                 verticalSpaceLarge,
 
-                /// Create Account Button
-                Button(
-                  btnText: "Submit Documents",
-                  onClick: viewModel.submitDocuments,
-                  useGradient: true,
-                ),
-                const Spacer(),
+                // /// Create Account Button
+                // Button(
+                //   btnText: "Submit Documents",
+                //   onClick: viewModel.submitDocuments,
+                //   useGradient: true,
+                // ),
+                // const Spacer(),
 
-                // Footer
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Logout", style: TextStyle(color: Colors.redAccent)),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Language: ',
-                            style: TextStyle(color: kcVeryLightGrey),
-                          ),
-                          TextSpan(
-                            text: 'English',
-                            style: TextStyle(color: Colors.redAccent),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                verticalSpaceSmall,
+                // // Footer
+                // const Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text("Logout", style: TextStyle(color: Colors.redAccent)),
+                //     Text.rich(
+                //       TextSpan(
+                //         children: [
+                //           TextSpan(
+                //             text: 'Language: ',
+                //             style: TextStyle(color: kcVeryLightGrey),
+                //           ),
+                //           TextSpan(
+                //             text: 'English',
+                //             style: TextStyle(color: Colors.redAccent),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // verticalSpaceSmall,
               ],
             ),
           ),

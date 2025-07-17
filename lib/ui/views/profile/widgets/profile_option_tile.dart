@@ -19,7 +19,7 @@ class ProfileOptionTile extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 6),
         decoration: BoxDecoration(
-          color: const Color(0xFF1A1A1A),
+          color: const Color(0xFF252728),
           borderRadius: BorderRadius.circular(12),
         ),
         child: ListTile(

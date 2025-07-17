@@ -9,6 +9,7 @@ class KycOptionTile extends StackedView<KycViewModel> {
   final String title;
   final String subtitle;
   final VoidCallback onTap;
+  final bool selected;
 
   const KycOptionTile({
     super.key,
@@ -16,6 +17,7 @@ class KycOptionTile extends StackedView<KycViewModel> {
     required this.title,
     required this.subtitle,
     required this.onTap,
+    required this.selected,
   });
 
   @override
@@ -53,7 +55,9 @@ class KycOptionTile extends StackedView<KycViewModel> {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: Colors.white)
+            selected
+                ? const Icon(Icons.check_circle, color: kcPrimaryColor)
+                : const Icon(Icons.chevron_right, color: kcVeryLightGrey),
           ],
         ),
       ),

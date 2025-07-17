@@ -5,13 +5,16 @@ import 'package:edge_market/models/member.dart';
 import 'package:edge_market/models/user.dart';
 import 'package:edge_market/services/auth_service.dart';
 import 'package:edge_market/services/referral_service.dart';
+import 'package:edge_market/services/versions_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:stacked/stacked.dart';
 
 class MyNetworkViewModel extends BaseViewModel {
   final _referralService = locator<ReferralService>();
   final _authService = locator<AuthService>();
+  final _appVersionService = locator<AppVersionService>();
 
   UserModel? get user => _authService.user;
 
@@ -53,4 +56,26 @@ class MyNetworkViewModel extends BaseViewModel {
       ),
     );
   }
+
+void share() async {
+  final code = inviteCode;
+  final baseUrl = _appVersionService.appVersion?.url ?? 'https://edgemarket.app';
+
+  final message = '''
+Hey! 👋
+
+I'm using an amazing app called **Edge Market** where you can earn real money by referring others.
+
+Use my referral code: **$code**  
+Sign up now on: $baseUrl
+
+You’ll get a welcome bonus, and both of us can earn more as you invite your friends too! 💸
+
+Don’t miss this opportunity to make some extra cash! 🚀
+''';
+
+    await Share.share(message);
+  
+}
+
 }

@@ -5,13 +5,15 @@ import 'package:edge_market/ui/common/endpoints.dart';
 
 class AppVersionService {
   final ApiService _apiService = ApiService();
+  AppVersion? appVersion;
 
   Future<AppVersion> getVersion() async {
     final response = await _apiService.get(Endpoints.version);
     final data = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      return AppVersion.fromJson(data['data']);
+      appVersion = AppVersion.fromJson(data['data']);
+      return appVersion!;
     } else {
       throw Exception(data['message']);
     }
