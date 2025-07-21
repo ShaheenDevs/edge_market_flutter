@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:edge_market/app/app.bottomsheets.dart';
 import 'package:edge_market/app/app.locator.dart';
 import 'package:edge_market/models/user.dart';
@@ -36,6 +38,7 @@ class HomeViewModel extends BaseViewModel {
 
     try {
       _transactions = await _walletService.getUserTransactions(user!.id);
+      log(_transactions.length.toString());
     } catch (e) {
       _transactions = [];
     }

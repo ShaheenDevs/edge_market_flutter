@@ -141,7 +141,7 @@ class HomeView extends StackedView<HomeViewModel> {
                         ),
 
                         /// Transactions List
-                        viewModel.transactions.isEmpty
+                        viewModel.transactions.isEmpty && !viewModel.isBusy
                             ? const Center(
                                 child: Text(
                                 "No Recourd Found",

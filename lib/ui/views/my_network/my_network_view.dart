@@ -30,20 +30,13 @@ class MyNetworkView extends StackedView<MyNetworkViewModel> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Header Row
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'My Network',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Icon(Icons.settings,
-                              color: Colors.white.withOpacity(0.6)),
-                        ],
+                      const Text(
+                        'My Network',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       verticalSpaceSmall,
 

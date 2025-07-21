@@ -40,17 +40,10 @@ class NotificationView extends StackedView<NotificationViewModel> {
                           final Notification notification =
                               viewModel.notifications[index];
                           return Container(
-                            padding: const EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: Theme.of(context).cardColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.05),
-                                  blurRadius: 4,
-                                  offset: const Offset(0, 2),
-                                )
-                              ],
+                              color: const Color(0xFF252728),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,26 +53,30 @@ class NotificationView extends StackedView<NotificationViewModel> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium
-                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                      ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
                                 ),
                                 const SizedBox(height: 4),
-                                Text(notification.description),
-                                if (notification.link != null &&
-                                    notification.link!.isNotEmpty)
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 6.0),
-                                    child: GestureDetector(
-                                      onTap: () => viewModel
-                                          .openLink(notification.link!),
-                                      child: Text(
-                                        notification.link!,
-                                        style: const TextStyle(
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                Text(notification.description,
+                                    style:
+                                        const TextStyle(color: Colors.white)),
+                                // if (notification.link != null &&
+                                //     notification.link!.isNotEmpty)
+                                //   Padding(
+                                //     padding: const EdgeInsets.only(top: 6.0),
+                                //     child: GestureDetector(
+                                //       onTap: () => viewModel
+                                //           .openLink(notification.link!),
+                                //       child: Text(
+                                //         notification.link!,
+                                //         style: const TextStyle(
+                                //           color: Colors.blue,
+                                //           decoration: TextDecoration.underline,
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ),
                               ],
                             ),
                           );
