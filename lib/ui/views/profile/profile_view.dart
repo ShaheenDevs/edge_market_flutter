@@ -6,7 +6,6 @@ import 'package:stacked/stacked.dart';
 import 'profile_viewmodel.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_option_tile.dart';
-import 'widgets/profile_footer.dart';
 
 class ProfileView extends StackedView<ProfileViewModel> {
   const ProfileView({Key? key}) : super(key: key);
@@ -51,10 +50,15 @@ class ProfileView extends StackedView<ProfileViewModel> {
                         label: 'Privacy & Terms',
                         onTap: viewModel.onPrivacy,
                       ),
+                      ProfileOptionTile(
+                        icon: "assets/icons/logout.png",
+                        label: 'Logout',
+                        onTap: viewModel.onLogout,
+                      ),
                     ],
                   ),
                 ),
-                const ProfileFooter(),
+                // const ProfileFooter(),
               ],
             ),
           ),

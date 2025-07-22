@@ -66,12 +66,12 @@ class HomeView extends StackedView<HomeViewModel> {
                                 ),
                               ],
                             ),
-                            const CircleAvatar(
-                              radius: 24,
-                              backgroundColor: Colors.transparent,
-                              backgroundImage:
-                                  AssetImage("assets/icons/setting.png"),
-                            ),
+                            // const CircleAvatar(
+                            //   radius: 24,
+                            //   backgroundColor: Colors.transparent,
+                            //   backgroundImage:
+                            //       AssetImage("assets/icons/setting.png"),
+                            // ),
                           ],
                         ),
                         verticalSpaceMedium,

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edge_market/ui/common/app_colors.dart';
 import 'package:edge_market/ui/common/endpoints.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
-import 'package:edge_market/ui/widgets/common/button/button.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import '../profile_viewmodel.dart';
@@ -25,11 +24,11 @@ class ProfileHeader extends ViewModelWidget<ProfileViewModel> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            CircleAvatar(
-              radius: 24,
-              backgroundColor: Colors.transparent,
-              backgroundImage: AssetImage("assets/icons/setting.png"),
-            ),
+            // CircleAvatar(
+            //   radius: 24,
+            //   backgroundColor: Colors.transparent,
+            //   backgroundImage: AssetImage("assets/icons/setting.png"),
+            // ),
           ],
         ),
         const SizedBox(height: 20),
@@ -52,12 +51,12 @@ class ProfileHeader extends ViewModelWidget<ProfileViewModel> {
           viewModel.user?.email ?? "",
           style: const TextStyle(color: kcLightGrey, fontSize: 13),
         ),
-        verticalSpaceSmall,
-        Button(
-          onClick: viewModel.onEditProfile,
-          btnText: "Edit profile",
-          width: 200,
-        ),
+        // verticalSpaceSmall,
+        // Button(
+        //   onClick: viewModel.onEditProfile,
+        //   btnText: "Edit profile",
+        //   width: 200,
+        // ),
       ],
     );
   }
