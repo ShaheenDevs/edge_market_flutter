@@ -37,7 +37,7 @@ class WithdrawViewModel extends BaseViewModel {
   double get finalAmount => parsedAmount - platformFee;
 
   onViewModelReady() {
-    _authService.getUser(user?.id ?? 0);
+    _authService.getUser(user?.id ?? -1);
     notifyListeners();
   }
 
@@ -86,7 +86,7 @@ class WithdrawViewModel extends BaseViewModel {
     try {
       bool res = await _walletService.requestWithdrawal(
         amount: parsedAmount,
-        userId: user?.id ?? 0,
+        userId: user?.id ?? -1,
         description:
             "Withdrawal Request\nPayment Method: $selectedPaymetMethod\nWallet Address: $trimmedWallet",
       );
@@ -112,6 +112,6 @@ class WithdrawViewModel extends BaseViewModel {
   }
 
   onDispose() {
-    _authService.getUser(user?.id ?? 0);
+    _authService.getUser(user?.id ?? -1);
   }
 }

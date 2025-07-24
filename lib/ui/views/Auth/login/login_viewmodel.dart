@@ -11,9 +11,10 @@ class LoginViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
 
-  final emailController = TextEditingController(text: "xyz@gmail.com");
-  final passwordController = TextEditingController(text: "qwerty123");
-
+  // final emailController = TextEditingController(text: "xyz@gmail.com");
+  // final passwordController = TextEditingController(text: "qwerty123");
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   bool obscurePassword = true;
 
   void togglePasswordVisibility() {
