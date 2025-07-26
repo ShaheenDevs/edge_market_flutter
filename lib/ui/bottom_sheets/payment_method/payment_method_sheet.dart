@@ -44,7 +44,6 @@ class PaymentMethodSheet extends StackedView<PaymentMethodSheetModel> {
             Text(
               request.description ?? "",
               style: const TextStyle(fontSize: 14, color: kcMediumGrey),
-              maxLines: 3,
               softWrap: true,
             ),
           ],

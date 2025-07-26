@@ -24,7 +24,7 @@ class MainApp extends StatelessWidget {
         fontFamily: 'MadimiOne',
         useMaterial3: true,
       ),
-      initialRoute: Routes.startupView,
+      initialRoute: Routes.kycView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [StackedService.routeObserver],

@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:edge_market/app/app.bottomsheets.dart';
 import 'package:edge_market/models/payment.dart';
+import 'package:edge_market/services/auth_service.dart';
+import 'package:edge_market/ui/views/kyc/kyc_pending/kyc_pending_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -12,10 +14,10 @@ import 'package:edge_market/models/kyc.dart';
 import 'package:edge_market/services/kyc_service.dart';
 import 'package:edge_market/services/payments_service.dart';
 import 'package:edge_market/ui/common/ui_helpers.dart';
-import 'package:edge_market/ui/views/botton_bar/botton_bar_view.dart';
 
 class KycViewModel extends BaseViewModel {
   final _kycService = locator<KycService>();
+  final _authService = locator<AuthService>();
   final _paymentService = locator<PaymentMethodService>();
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
@@ -68,7 +70,8 @@ class KycViewModel extends BaseViewModel {
     final response = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.paymentMethod,
       title: "Choose Method",
-      description: "Select the payment method used",
+      description:
+          "⭐  Pay Rs. 5000 to verify your account.\n⭐  Upload the payment receipt below. \n⭐  Verification takes 24–48 hours.",
       data: allMethods,
     );
 
@@ -110,7 +113,7 @@ class KycViewModel extends BaseViewModel {
 
       if (kyc != null) {
         showToast("KYC submitted successfully!");
-        _navigationService.clearStackAndShowView(const BottonBarView());
+        _navigationService.clearStackAndShowView(const KycPendingView());
       } else {
         showToast("Failed to submit KYC.");
       }
@@ -119,5 +122,10 @@ class KycViewModel extends BaseViewModel {
     } finally {
       setBusy(false);
     }
+  }
+
+  Future<void> onLogout() async {
+    await _authService.logout();
+    _navigationService.clearStackAndShow(Routes.loginView);
   }
 }
