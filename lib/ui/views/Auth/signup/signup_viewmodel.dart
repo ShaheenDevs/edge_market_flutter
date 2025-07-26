@@ -87,6 +87,7 @@ class SignupViewModel extends BaseViewModel {
     }
 
     final data = {
+      "fullName": name,
       "email": email,
       "phoneNo": fullPhone,
       "password": password,
